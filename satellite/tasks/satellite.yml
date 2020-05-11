@@ -1,0 +1,72 @@
+---
+- import_playbook: subscription.yml
+- import_playbook: satellite_repos.yml
+# Only use when using quicklab to add 20GB RAM
+- import_playbook: partitions.yml
+- name: prerequisites all nodes
+  hosts: node-1
+  vars:
+    packages:
+      - satellite
+      - chrony
+      - sos
+    ports:
+      - 80/tcp
+      - 443/tcp
+      - 5646/tcp
+      - 5647/tcp
+      - 8000/tcp
+      - 8140/tcp
+      - 9090/tcp
+      - 53/udp
+      - 53/tcp
+      - 67/udp
+      - 69/udp
+      - 5000/tcp
+  tasks:
+
+    - name: install firewalld
+      package:
+        name: firewalld
+        state: present
+
+    - name: open firewall ports
+      firewalld:
+        port: "{{ item }}"
+        permanent: yes
+        state: enabled
+      loop: "{{ ports }}"
+
+    - name: reloading firewalld service
+      systemd:
+        name: firewalld
+        state: reloaded 
+#This task in not necessary in a newly used cluster   
+   #- name: clean metadata
+   #  command: yum clean all 
+
+#This task in not necessary in a newly used cluster
+   #- name: update
+   #  yum:
+   #    name: '*'
+   #    state: latest
+
+    - name: install packages
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"
+   
+    - name: enable and start chronyd
+      service: chronyd
+      state: started
+      enabled: yes
+    
+    - name: copy satellite-installer script
+      copy:
+        src: satellite-installer.sh
+        dest: satellite-installer.sh
+        mode: 0755
+
+    - name: execute script 
+      script: satellite-installer.sh

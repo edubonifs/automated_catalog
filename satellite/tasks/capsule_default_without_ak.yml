@@ -1,0 +1,89 @@
+- name: prerequisites for capsules without ak
+  hosts: node-2
+  vars:
+    packages:
+      - satellite-capsule
+      - chrony
+      - sos
+    ports:
+      - 53/tcp
+      - 53/udp
+      - 67/udp
+      - 69/udp
+      - 80/tcp
+      - 443/tcp
+      - 5000/tcp
+      - 5647/tcp
+      - 8000/tcp
+      - 8140/tcp
+      - 8443/tcp
+      - 9090/tcp
+  tasks:
+
+    - name: install firewalld
+      package:
+        name: firewalld
+        state: present
+
+    - name: open firewall ports
+      firewalld:
+        port: "{{ item }}"
+        permanent: yes
+        state: enabled
+      loop: "{{ ports }}"
+
+    - name: reloading firewalld service
+      systemd:
+        name: firewalld
+        state: reloaded 
+#This task in not necessary in a newly used cluster   
+   #- name: clean metadata
+   #  command: yum clean all 
+
+#This task in not necessary in a newly used cluster
+   #- name: update
+   #  yum:
+   #    name: '*'
+   #    state: latest
+
+    - name: install packages
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"
+   
+    - name: enable and start chronyd
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+    
+- name: prerequisites for capsules without ak
+  hosts: node-1
+  gather_facts: no
+  tasks:
+    
+    - name: create directory for storing certificates
+      file:
+        path: /root/capsule_cert
+        stete: directory
+
+    - name: copy script to satellite
+      copy:
+        src: generate_certs.sh
+        dest: generate_certs.sh
+        mode: 0755
+        
+    - name: execute script for generating certificates of the capsule
+      script: generate_certs.sh
+
+#    - name: download satellite ca-consumer
+#      get_url:
+#        url: https://node-1.edutest.lab.upshift.rdu2.redhat.com/pub/katello-ca-consumer-latest.noarch.rpm
+#        dest: .
+#        validate_certs: false
+
+#    - name: install katello-ca-consumer
+#      yum:
+#        name: katello-ca-consumer-latest.noarch.rpm
+#        state: present

@@ -1,0 +1,9 @@
+---
+- name: eso
+  hosts: node-2
+  tasks:
+    - name: download satellite ca-consumer
+      get_url:
+        url: https://node-1.edutest.lab.upshift.rdu2.redhat.com/pub/katello-ca-consumer-latest.noarch.rpm
+        dest: .
+        validate_certs: false

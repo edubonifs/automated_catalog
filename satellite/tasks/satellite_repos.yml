@@ -1,0 +1,26 @@
+---
+- name: satellite repos
+  hosts: node-1
+  vars:
+    repos67:
+      - rhel-7-server-rpms
+      - rhel-7-server-satellite-6.7-rpms
+      - rhel-7-server-satellite-maintenance-6-rpms
+      - rhel-server-rhscl-7-rpms
+      - rhel-7-server-ansible-2.8-rpms
+    repos66:
+      - rhel-7-server-rpms
+      - rhel-7-server-satellite-6.6-rpms
+      - rhel-7-server-satellite-maintenance-6-rpms
+      - rhel-server-rhscl-7-rpms
+      - rhel-7-server-ansible-2.8-rpms
+  tasks:
+    - name: Disable all RHSM repositories
+      rhsm_repository:
+        name: '*'
+        state: disabled
+
+    - name: Enable necessary repos satellite
+      rhsm_repository:
+        name: "{{ item }}"
+      loop: "{{ repos67 }}"
