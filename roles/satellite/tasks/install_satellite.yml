@@ -1,0 +1,46 @@
+---
+- name: install firewalld
+  package:
+    name: firewalld
+    state: present
+
+- name: open firewall ports
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop: "{{ ports }}"
+
+- name: reloading firewalld service
+  systemd:
+    name: firewalld
+    state: reloaded 
+#This task in not necessary in a newly used cluster   
+   #- name: clean metadata
+   #  command: yum clean all 
+
+#This task in not necessary in a newly used cluster
+   #- name: update
+   #  yum:
+   #    name: '*'
+   #    state: latest
+
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+   
+- name: enable and start chronyd
+  service: chronyd
+  state: started
+  enabled: yes
+    
+- name: copy satellite-installer script
+  copy:
+    src: satellite-installer-automated.sh
+    dest: satellite-installer.sh
+    mode: 0754
+
+- name: execute script 
+   script: satellite-installer.sh

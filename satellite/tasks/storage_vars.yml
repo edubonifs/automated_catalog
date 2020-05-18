@@ -1,9 +1,0 @@
----
-partitions:
-  - number: 1
-    start: 1MiB
-    end: 100%
-
-partitions_name:
-  - name: /dev/vdb
-  - name: /dev/vdc

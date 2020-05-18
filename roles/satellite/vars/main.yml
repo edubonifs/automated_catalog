@@ -1,0 +1,42 @@
+---
+packages:
+  - satellite
+  - chrony
+  - sos
+
+ports:
+  - 80/tcp
+  - 443/tcp
+  - 5646/tcp
+  - 5647/tcp
+  - 8000/tcp
+  - 8140/tcp
+  - 9090/tcp
+  - 53/udp
+  - 53/tcp
+  - 67/udp
+  - 69/udp
+  - 5000/tcp
+
+repos67:
+  - rhel-7-server-rpms
+  - rhel-7-server-satellite-6.7-rpms
+  - rhel-7-server-satellite-maintenance-6-rpms
+  - rhel-server-rhscl-7-rpms
+  - rhel-7-server-ansible-2.8-rpms
+
+repos66:
+  - rhel-7-server-rpms
+  - rhel-7-server-satellite-6.6-rpms
+  - rhel-7-server-satellite-maintenance-6-rpms
+  - rhel-server-rhscl-7-rpms
+  - rhel-7-server-ansible-2.8-rpms
+
+partitions:
+  - number: 1
+    start: 1MiB
+    end: 100%
+
+partitions_name:
+  - name: /dev/vdb
+  - name: /dev/vdc

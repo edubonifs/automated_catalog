@@ -4,3 +4,4 @@ satellite-installer --scenario satellite \
 --foreman-initial-location "initial_location_name" \
 --foreman-initial-admin-username admin_user_name \
 --foreman-initial-admin-password admin_password
+
