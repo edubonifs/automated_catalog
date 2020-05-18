@@ -2,6 +2,6 @@
 - name: Satellite installer
   hosts: node-8.eduocp.lab.rdu2.cee.redhat.com
   vars_files:
-    - sec.yml
+    - roles/satellite/vars/sec.yml
   roles:
     - satellite

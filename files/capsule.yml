@@ -1,5 +1,0 @@
----
-- import_playbook: subscription.yml
-- import_playbook: capsule_repos.yml
-- import_playbook: capsule_default_without_ak.yml
-#- import_playbook: capsule_ak.yml

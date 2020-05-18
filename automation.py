@@ -1,4 +1,6 @@
 import os
+
+#Define host name in which the installation will be done
 def write_host(hostame):
   with open('satellite.yml', 'r') as file:
     data = file.readlines()
@@ -11,6 +13,7 @@ def write_host(hostame):
   with open('inventory', 'w') as file:
     file.writelines( data )
 
+#Write Name, password, Organization and Location for the satellite-installer command
 def inst_file(name,passwd,org,loc):
   with open('roles/satellite/files/satellite-installer.sh', 'r') as file:
     data = file.readlines()
@@ -21,6 +24,7 @@ def inst_file(name,passwd,org,loc):
   with open('roles/satellite/files/satellite-installer-automated.sh', 'w') as file:
     file.writelines( data )
 
+#Write Version of satellite, whether you want to make partitions or not, and if you want to subscribe your nodes
 def set_vars(version,parted,sub):
   with open('roles/satellite/vars/main.yml', 'r') as file:
     data = file.readlines()
@@ -29,6 +33,7 @@ def set_vars(version,parted,sub):
     data[3] = "sub: " + sub + "\n"
   with open('roles/satellite/vars/main.yml', 'w') as file:
     file.writelines( data )
+
 
 product = input("Which product would you like to choose?\n1-Satellite\n2-Tower\n3-OCP\n4-IDM\n")
 if product == 1:
@@ -54,7 +59,7 @@ if product == 1:
     else:
       sub = "false"
     set_vars(version,parted,sub)
-    name = raw_input("Enter the admin user name\n")
+    name = raw_input("Enter the admin username\n")
     passwd = raw_input("Enter the password of the admin\n")
     org = raw_input("Enter Organization name\n")
     loc = raw_input("Enter Location name\n")
@@ -62,6 +67,13 @@ if product == 1:
     os.system('ansible-playbook satellite.yml --ask-vault-pass')
   elif action == 2:
     print("You chosed Capsule Installation")
+    hostname = raw_input("Enter the hostname of the Capsule\n")
+    write_host(hostname)
+    ask_version = raw_input("Enter the version of Capsule you would like to install\n1-6.6\n2-6.7\n")
+    if ask_version == 1:
+      version = "6.6"
+    else:
+      version = "6.7"
   elif action == 3:
     print("You chosed Satellite Upgrade")
   else:
