@@ -1,13 +1,8 @@
 ---
-- name: subscriptions
-  hosts: node-2
-  vars_files:
-    - sec.yml
-  tasks:
-    - name: subscriptions rhel
-      redhat_subscription:
-        state: present
-        username: eduboni
-        password: "{{ pass }}"
-        pool_ids: 8a85f9996f0fa058016f7de6ac642eba 
-        force_register: yes
+- name: subscriptions rhel
+  redhat_subscription:
+    state: present
+    username: eduboni
+    password: "{{ pass }}"
+    pool_ids: 8a85f9996f0fa058016f7de6ac642eba 
+    force_register: yes

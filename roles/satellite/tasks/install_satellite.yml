@@ -32,9 +32,10 @@
   loop: "{{ packages }}"
    
 - name: enable and start chronyd
-  service: chronyd
-  state: started
-  enabled: yes
+  service:
+    name: chronyd
+    state: started
+    enabled: yes
     
 - name: copy satellite-installer script
   copy:
@@ -43,4 +44,4 @@
     mode: 0754
 
 - name: execute script 
-   script: satellite-installer.sh
+  script: satellite-installer.sh

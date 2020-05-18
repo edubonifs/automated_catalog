@@ -1,3 +1,7 @@
 ---
 # tasks file for satellite
+- import_tasks: subscription.yml
+- import_tasks: satellite_repos.yml
+- import_tasks: partitions.yml
+  when: parted
 - import_tasks: install_satellite.yml

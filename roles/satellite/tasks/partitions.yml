@@ -1,47 +1,41 @@
----
-- name: Create partitions
-  hosts: node-1
-  vars_files:
-    - storage_vars.yml
-  tasks:
+--- 
+- name: Correct partitions exist
+  parted:
+    device: "{{ item[1].name }}"
+    state: present
+    number: "{{ item[0].number }}"
+    part_start: "{{ item[0].start }}"
+    part_end: "{{ item[0].end }}"
+  with_nested:
+    - "{{ partitions }}"
+    - "{{ partitions_name }}"
+  register: command_result
+  ignore_errors: yes
   
-    - name: Correct partitions exist
-      parted:
-        device: "{{ item[1].name }}"
-        state: present
-        number: "{{ item[0].number }}"
-        part_start: "{{ item[0].start }}"
-        part_end: "{{ item[0].end }}"
-      with_nested:
-        - "{{ partitions }}"
-        - "{{ partitions_name }}"
-      register: command_result
-      ignore_errors: yes
-  
-    - name: fstype of linux-swap
-      filesystem:
-        dev: "{{ item.name }}"
-        fstype: swap
-      loop: "{{ partitions_name }}"
-      ignore_errors: yes
+- name: fstype of linux-swap
+  filesystem:
+    dev: "{{ item.name }}"
+    fstype: swap
+  loop: "{{ partitions_name }}"
+  ignore_errors: yes
 
-    - name: mkswap
-      command: "mkswap {{ item.name }}"
-      loop: "{{ partitions_name }}"
-      ignore_errors: yes
+- name: mkswap
+  command: "mkswap {{ item.name }}"
+  loop: "{{ partitions_name }}"
+  ignore_errors: yes
       
-    - name: Write swap entry in fstab
-      mount: name=swap
-        src={{ item.name }}
-        fstype=swap
-        opts=sw
-        passno=0
-        dump=0
-        state=present
-      loop: "{{ partitions_name }}"
-      ignore_errors: yes
+- name: Write swap entry in fstab
+  mount: name=swap
+    src={{ item.name }}
+    fstype=swap
+    opts=sw
+    passno=0
+    dump=0
+    state=present
+  loop: "{{ partitions_name }}"
+  ignore_errors: yes
 
-    - name: Mount swap
-      command: "swapon {{ item.name }}"
-      loop: "{{ partitions_name }}"
-      ignore_errors: yes
+- name: Mount swap
+  command: "swapon {{ item.name }}"
+  loop: "{{ partitions_name }}"
+  ignore_errors: yes
