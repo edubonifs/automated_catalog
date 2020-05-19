@@ -17,10 +17,7 @@ def write_host(hostame):
 def inst_file(name,passwd,org,loc):
   with open('roles/satellite/files/satellite-installer.sh', 'r') as file:
     data = file.readlines()
-    data[2] = "--foreman-initial-organization " + org +" \\ \n"
-    data[3] = "--foreman-initial-location " + loc +" \\ \n"
-    data[4] = "--foreman-initial-admin-username " + name +" \\ \n"
-    data[5] = "--foreman-initial-admin-password " + passwd +"\n"
+    data [1] = "satellite-installer --scenario satellite --foreman-initial-organization "+ org +" --foreman-initial-location "+ loc +" --foreman-initial-admin-username " +name+ " --foreman-initial-admin-password " + passwd + ""
   with open('roles/satellite/files/satellite-installer-automated.sh', 'w') as file:
     file.writelines( data )
 
@@ -49,12 +46,12 @@ if product == 1:
     else:
       version = "6.7"
     ask_parted = raw_input("Do you want to make partitions for /dev/vdb and /dev/vdc?\n(Recommended for quicklab installations)\n1-Yes\n2-No\n")
-    if ask_parted == 1:
+    if ask_parted == "1":
       parted = "true"
     else:
       parted = "false"
     ask_sub= raw_input("Do you want to subscribe the node?\n1-Yes\n2-No\n")
-    if ask_sub == 1:
+    if ask_sub == "1":
       sub = "true"
     else:
       sub = "false"

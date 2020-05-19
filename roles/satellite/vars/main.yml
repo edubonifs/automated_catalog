@@ -1,7 +1,7 @@
 ---
 version: 6.7
-parted: false
-sub: false
+parted: true
+sub: true
 
 packages:
   - satellite
