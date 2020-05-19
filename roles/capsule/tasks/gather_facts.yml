@@ -1,5 +1,3 @@
 - name: set satellite version
   set_fact:
-    satellite_version: "{{ version }}" 
-    partitions: "{{ parted }}"
-    repos: "{{ repos_v }}"
+    

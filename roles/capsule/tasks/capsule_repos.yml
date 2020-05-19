@@ -1,28 +1,10 @@
 ---
-- name: capsule repos
-  hosts: node-2
-  vars:
-    repos67:
-      - rhel-7-server-rpms
-      - rhel-7-server-satellite-capsule-6.6-rpms
-      - rhel-7-server-satellite-maintenance-6-rpms
-      - rhel-7-server-satellite-tools-6.7-rpms
-      - rhel-server-rhscl-7-rpms
-      - rhel-7-server-ansible-2.8-rpms
-    repos66:
-      - rhel-7-server-rpms
-      - rhel-7-server-satellite-capsule-6.6-rpms
-      - rhel-7-server-satellite-maintenance-6-rpms
-      - rhel-7-server-satellite-tools-6.6-rpms
-      - rhel-server-rhscl-7-rpms
-      - rhel-7-server-ansible-2.8-rpms
-  tasks:
-    - name: Disable all RHSM repositories
-      rhsm_repository:
-        name: "*"
-        state: disabled
+- name: Disable all RHSM repositories
+  rhsm_repository:
+    name: "*"
+    state: disabled
 
-    - name: Enable necessary repos capsule
-      rhsm_repository:
-        name: "{{ item }}"
-      loop: "{{ repos67 }}"
+- name: Enable necessary repos capsule
+  rhsm_repository:
+    name: "{{ item }}"
+  loop: "{{ repos67 }}"
