@@ -1,0 +1,10 @@
+---
+- name: Uninstall rabbitmq package
+  yum:
+    name: rabbitmq-server
+    state: absent
+
+- name: Remove rabbitmq config directory (i.e. certs, config, etc.)
+  file:
+    path: "/etc/rabbitmq"
+    state: absent

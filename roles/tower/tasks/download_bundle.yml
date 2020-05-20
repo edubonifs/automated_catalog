@@ -1,0 +1,15 @@
+- name: download tower bundle
+  get_url:
+    url: https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
+    dest: roles/tower/files/tower-setup.tar.gz
+
+- name: untar tower bundle
+  shell: tar xzf roles/tower/files/tower-setup.tar.gz
+  args:
+    warn: false
+
+- name:
+  shell: mv ansible-tower* roles/tower/files
+
+- name: change tower bundle name
+  shell: mv roles/tower/files/an* roles/tower/files/tower-setup

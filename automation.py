@@ -28,6 +28,16 @@ def set_vars(version,parted,sub,name,passwd,org,loc,enable_repos):
   with open('roles/satellite/vars/main.yml', 'w') as file:
     file.writelines( data )
 
+#Set tower nodes' hostnames, database, passwords and ports
+def set_tower_vars(host_list, hosts_size):
+  with open('roles/tower/files/tower-setup/inventory', 'r') as file:
+    data = file.readlines()
+    i = 0
+    while i < hosts_size:
+      data[1] = hosts_list[i] +"\n"
+  with open('roles/tower/files/tower-setup/inventory', 'w') as file:
+    file.writelines( data )
+
 
 product = input("Which product would you like to choose?\n1-Satellite\n2-Tower\n3-OCP\n4-IDM\n")
 if product == 1:
@@ -78,6 +88,18 @@ if product == 1:
     print("You chosed Capsule Upgrade")
 elif product == 2:
   print("You chosed Tower")
+  ask_sub= raw_input("Do you want to subscribe the node?\n1-Yes\n2-No\n")
+  if ask_sub == "1":
+    sub = "true"
+  else:
+    sub = "false"
+  ask_nodes= input("How many tower nodes do you want?\nEnter a number\n")
+  nodes = {}
+  i = 0
+  while i < ask_nodes:
+    node_fqdn = raw_input("Enter hostname "+ (i+1) +"\n")
+    nodes[i] = node_fqdn
+    set_tower_vars(nodes)
 elif product == 3:
   print("You chosed OCP")
 else:
