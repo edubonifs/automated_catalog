@@ -36,12 +36,8 @@
     name: chronyd
     state: started
     enabled: yes
-    
-- name: copy satellite-installer script
-  copy:
-    src: satellite-installer-automated.sh
-    dest: satellite-installer.sh
-    mode: 0754
 
-- name: execute script 
-  script: satellite-installer.sh
+- name: execute satellite-installer command
+  command: "{{ satellite_cmd }}" 
+
+

@@ -13,21 +13,18 @@ def write_host(hostame):
   with open('inventory', 'w') as file:
     file.writelines( data )
 
-#Write Name, password, Organization and Location for the satellite-installer command
-def inst_file(name,passwd,org,loc):
-  with open('roles/satellite/files/satellite-installer.sh', 'r') as file:
-    data = file.readlines()
-    data [1] = "satellite-installer --scenario satellite --foreman-initial-organization "+ org +" --foreman-initial-location "+ loc +" --foreman-initial-admin-username " +name+ " --foreman-initial-admin-password " + passwd + ""
-  with open('roles/satellite/files/satellite-installer-automated.sh', 'w') as file:
-    file.writelines( data )
-
-#Write Version of satellite, whether you want to make partitions or not, and if you want to subscribe your nodes
-def set_vars(version,parted,sub):
+#Write Version of satellite, whether you want to make partitions or not, if you want to subscribe your nodes, organization, location, admin username and password
+def set_vars(version,parted,sub,name,passwd,org,loc,enable_repos):
   with open('roles/satellite/vars/main.yml', 'r') as file:
     data = file.readlines()
     data[1] = "version: " + version +"\n"
     data[2] = "parted: " + parted +"\n"
     data[3] = "sub: " + sub + "\n"
+    data[4] = "admin: " + name  + "\n"
+    data[5] = "passwd: " + passwd + "\n"
+    data[6] = "organization: " + org + "\n"
+    data[7] = "location: " + loc + "\n"
+    data[8] = "enable_repos: " + enable_repos +"\n"
   with open('roles/satellite/vars/main.yml', 'w') as file:
     file.writelines( data )
 
@@ -41,7 +38,7 @@ if product == 1:
     hostname = raw_input("Enter the hostname of the Satellite\n")  
     write_host(hostname)
     ask_version = raw_input("Enter the version of Satellite you would like to install\n1-6.6\n2-6.7\n")
-    if ask_version == 1:
+    if ask_version == "1":
       version = "6.6"
     else:
       version = "6.7"
@@ -55,19 +52,23 @@ if product == 1:
       sub = "true"
     else:
       sub = "false"
-    set_vars(version,parted,sub)
+    ask_enabled= raw_input("Do you want to enable the repos?\n1-Yes\n2-No\n")
+    if ask_enabled == "1":
+      enable_repos = "true"
+    else:
+      enable_repos = "false"
     name = raw_input("Enter the admin username\n")
     passwd = raw_input("Enter the password of the admin\n")
     org = raw_input("Enter Organization name\n")
     loc = raw_input("Enter Location name\n")
-    inst_file(name,passwd,org,loc)
+    set_vars(version,parted,sub,name,passwd,org,loc,enable_repos)
     os.system('ansible-playbook satellite.yml --ask-vault-pass')
   elif action == 2:
     print("You chosed Capsule Installation")
     hostname = raw_input("Enter the hostname of the Capsule\n")
     write_host(hostname)
     ask_version = raw_input("Enter the version of Capsule you would like to install\n1-6.6\n2-6.7\n")
-    if ask_version == 1:
+    if ask_version == "1":
       version = "6.6"
     else:
       version = "6.7"

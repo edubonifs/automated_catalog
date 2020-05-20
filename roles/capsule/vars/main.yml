@@ -1,5 +1,8 @@
 ---
 # vars file for capsule
+loadbalancer:
+
+
 repos67:
   - rhel-7-server-rpms
   - rhel-7-server-satellite-capsule-6.6-rpms
@@ -7,6 +10,7 @@ repos67:
   - rhel-7-server-satellite-tools-6.7-rpms
   - rhel-server-rhscl-7-rpms
   - rhel-7-server-ansible-2.8-rpms
+
 repos66:
   - rhel-7-server-rpms
   - rhel-7-server-satellite-capsule-6.6-rpms
@@ -14,3 +18,22 @@ repos66:
   - rhel-7-server-satellite-tools-6.6-rpms
   - rhel-server-rhscl-7-rpms
   - rhel-7-server-ansible-2.8-rpms
+
+packages:
+  - satellite-capsule
+  - chrony
+  - sos
+
+ports:
+  - 53/tcp
+  - 53/udp
+  - 67/udp
+  - 69/udp
+  - 80/tcp
+  - 443/tcp
+  - 5000/tcp
+  - 5647/tcp
+  - 8000/tcp
+  - 8140/tcp
+  - 8443/tcp
+  - 9090/tcp

@@ -1,5 +1,16 @@
-- name: set satellite version
+- name: satellite basic installer command
   set_fact:
-    satellite_version: "{{ version }}" 
-    partitions: "{{ parted }}"
-    repos: "{{ repos_v }}"
+    satellite_basic: "/usr/sbin/satellite-installer --scenario satellite"
+
+- name: satellite organization, location and admin credentials
+  set_fact:
+    satellite_vars:
+      "foreman-initial-organization": "{{ organization }}"
+      "foreman-initial-location": "{{ location }}"
+      "foreman-initial-admin-username": "{{ admin }}"
+      "foreman-initial-admin-password": "{{ passwd }}"
+
+- name: set satellite version
+  set_fact: 
+    satellite_cmd: "{{ satellite_basic }} --{{ item.key }}='{{ item.value }}'"
+  loop: "{{ satellite_vars | dict2items }}"

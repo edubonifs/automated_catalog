@@ -1,3 +1,43 @@
-- name: set satellite version
+- name: set basic capsule cmd installation
   set_fact:
-    
+    capsule_basic_cmd: "/usr/sbin/satellite-installer --scenario capsule"
+
+- name: Capsule Install | Gather Facts | Get Satellite settings
+  command: "hammer --username='{{ configure_foreman_username }}' --password='{{ configure_foreman_password }}' --output='json' settings list"
+  register: satellite_settings_result
+  changed_when: False
+  delegate_to: "{{ satellite_server_host }}"
+  run_once: True
+
+- name: Capsule Install | Gather Facts | Set Satellite settings
+  set_fact:
+    satellite_settings: "{{ satellite_settings_result.stdout | from_json }}"
+
+- name: Capsule Install | Gather Facts | Set oAuth Consumer Facts
+  set_fact:
+    satellite_oauth_consumer_key: "{{ satellite_settings | json_query(oauth_consumer_key_query) | first }}"
+    satellite_oauth_consumer_secret: "{{ satellite_settings | json_query(oauth_consumer_secret_query) | first }}"
+  vars:
+    oauth_consumer_key_query: "[?Name=='oauth_consumer_key'].Value"
+    oauth_consumer_secret_query: "[?Name=='oauth_consumer_secret'].Value"
+
+
+
+- name: set capsule install vars
+  set_fact:
+    capsule_deployment_answers:
+      "certs-tar-file": "{{ cert_path }}"
+      "foreman-proxy-content-parent-fqdn": "{{ satellite }}"
+      "foreman-proxy-register-in-foreman": 'true'
+      "foreman-proxy-foreman-base-url": "https://{{ satellite }}"
+      "foreman-proxy-trusted-hosts": "{{ ansible_fqdn }}"
+      "foreman-proxy-oauth-consumer-key": "{{ satellite_oauth_consumer_key }}"
+      "foreman-proxy-oauth-consumer-secret": "{{ satellite_oauth_consumer_secret }}"
+      "puppet-server-foreman-url": "https://{{ ansible_fqdn }}"
+    when: not loadbalancer
+
+- name: Capsule Install | Update satellite-installer command
+  set_fact:
+    capsule_basic_cmd: "{{ capsule_basic_cmd }} --{{ item.key }}='{{ item.value }}'"
+  loop: "{{ capsule_deployment_answers |dict2items }}"
+

@@ -3,6 +3,8 @@
 - import_tasks: subscription.yml
   when: sub
 - import_tasks: satellite_repos.yml
+  when: enable_repos
+- import_tasks: gather_facts.yml
 - import_tasks: partitions.yml
   when: parted
 - import_tasks: install_satellite.yml
