@@ -1,5 +1,7 @@
 [tower]
-localhost ansible_connection=local
+node-1
+node-2
+node-3
 
 [database]
 

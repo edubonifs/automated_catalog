@@ -29,14 +29,28 @@ def set_vars(version,parted,sub,name,passwd,org,loc,enable_repos):
     file.writelines( data )
 
 #Set tower nodes' hostnames, database, passwords and ports
-def set_tower_vars(host_list, hosts_size):
-  with open('roles/tower/files/tower-setup/inventory', 'r') as file:
-    data = file.readlines()
+def set_tower_vars(hosts_list, hosts_size,database, admin_pass):
+  with open("roles/tower/files/tower-setup/inventory", "r") as in_file:
+    buf = in_file.readlines()
+    buf[1] = ""
+  #with open('inventory', 'w') as file:
+   # file.writelines( data )
+  with open("roles/tower/files/tower-setup/inventory", "w") as out_file:
     i = 0
-    while i < hosts_size:
-      data[1] = hosts_list[i] +"\n"
-  with open('roles/tower/files/tower-setup/inventory', 'w') as file:
-    file.writelines( data )
+    for line in buf:
+      if line == "[tower]\n":
+        while  i < hosts_size:
+          line = line + hosts_list[i] + "\n"
+          i += 1
+      if line == "[database]\n":
+        line = line + database +"\n"
+      if line == "admin_password=\'\'"
+        out_file.write("admin_password=\'" + admin_pass + '\n")
+      if line == "pg_host=\'\'"
+        out_file.write("pg_host=\'" + database + "\'\n")
+      if line == "pg_port=\'\'"
+        out_file.write("pg_host=\'5432\'\n")
+      out_file.write(line)
 
 
 product = input("Which product would you like to choose?\n1-Satellite\n2-Tower\n3-OCP\n4-IDM\n")
@@ -95,11 +109,18 @@ elif product == 2:
     sub = "false"
   ask_nodes= input("How many tower nodes do you want?\nEnter a number\n")
   nodes = {}
-  i = 0
-  while i < ask_nodes:
-    node_fqdn = raw_input("Enter hostname "+ (i+1) +"\n")
-    nodes[i] = node_fqdn
-    set_tower_vars(nodes)
+  i = 1
+  while i <= ask_nodes:
+    print "Enter the hostname of node number", i
+    print "(Please enter the hostnames of each one in the same format)"
+    node_fqdn = raw_input()
+    nodes[i-1] = node_fqdn
+    i += 1
+  ask_dat = input("Do you want a database?\n1-Yes\n2-No\n")
+  if ask_dat == 1:
+    database = raw_imput("Enter the hostname of the database\n")
+  admin_pass = raw_input("Enter the password of the admin\n")
+  set_tower_vars(nodes,ask_nodes,database,admin_pass)
 elif product == 3:
   print("You chosed OCP")
 else:
