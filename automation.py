@@ -218,6 +218,7 @@ elif product == 2:
   set_install(install)
   #set_inventory_line()
   os.system('ansible-playbook tower.yml')
+  os.system('sudo ./roles/tower/files/tower-setup/setup.sh')
   #unset_inventory_line()
 elif product == 3:
   print("You chosed OCP")
