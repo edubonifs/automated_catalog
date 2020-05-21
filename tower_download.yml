@@ -1,9 +1,7 @@
 ---
 - name: Tower Installer
-  hosts: all
+  hosts: localhost
   gather_facts: no
   become: no
-  vars_files:
-    - sec.yml
   roles:
     - tower

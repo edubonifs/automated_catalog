@@ -1,3 +1,8 @@
 ---
 # tasks file for tower
 - import_tasks: download_bundle.yml
+  when: not downloaded
+- import_tasks: subscription.yml
+  when: sub and downloaded
+- import_tasks: install_tower.yml
+  when: downloaded

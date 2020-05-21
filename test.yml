@@ -1,0 +1,8 @@
+---
+- name: l
+  gather_facts: no
+  hosts: node-5
+  tasks:
+
+    - name: launch setup
+      shell: ./automated_catalog/roles/tower/files/tower-setup/setup.sh

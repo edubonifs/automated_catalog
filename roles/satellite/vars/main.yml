@@ -1,12 +1,12 @@
 ---
-version: 6.6
-parted: false
-sub: false
+version: 6.7
+parted: true
+sub: true
 admin: admin
 passwd: redhat00
 organization: RedHat
 location: Madrid
-enable_repos: false
+enable_repos: true
 
 packages:
   - satellite

@@ -1,19 +1,19 @@
 [tower]
-node-1
-node-2
-node-3
+node-7
+node-8
 
 [database]
+node-9
 
 [all:vars]
-admin_password=''
+admin_password='redhat00'
 
-pg_host=''
-pg_port=''
+pg_host='node-9'
+pg_host='5432'
 
 pg_database='awx'
 pg_username='awx'
-pg_password=''
+pg_password='redhat00'
 pg_sslmode='prefer'  # set to 'verify-full' for client-side enforced SSL
 
 # Isolated Tower nodes automatically generate an RSA key for authentication;

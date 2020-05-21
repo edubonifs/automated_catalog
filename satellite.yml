@@ -1,6 +1,6 @@
 ---
 - name: Satellite installer
-  hosts: node-4
+  hosts: node-5.eduaut.lab.pnq2.cee.redhat.com
   vars_files:
     - roles/satellite/vars/sec.yml
   roles:

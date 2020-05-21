@@ -1,0 +1,4 @@
+---
+- name: launch setup
+  command: ./roles/tower/files/tower-setup/setup.sh
+  become: yes
