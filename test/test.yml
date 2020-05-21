@@ -1,0 +1,16 @@
+---
+- name: l
+  gather_facts: no
+  hosts: node-3
+  tasks:
+    - name: Capsule Install | Gather Facts | Get Satellite settings
+      command: "hammer --username=admin_user_name --password=admin_password --output='json' settings list"
+      register: satellite_settings_result
+
+    - name: Capsule Install | Gather Facts | Set Satellite settings
+      set_fact:
+        satellite_settings: "{{ satellite_settings_result.stdout | from_json }}"
+  
+    - name: var
+      debug:
+        var: satellite_settings

@@ -1,5 +1,5 @@
 ---
 # vars file for tower
-sub: true
+sub: false
 downloaded: true
 install: true
