@@ -3,6 +3,5 @@
   command: cp ansible.cfg roles/tower/files/tower-setup/
   delegate_to: localhost
 - name: launch setup
-  command: ./roles/tower/files/tower-setup/setup.sh
-  become: yes
+  shell: ./roles/tower/files/tower-setup/setup.sh
   delegate_to: localhost

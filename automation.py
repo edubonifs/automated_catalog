@@ -23,7 +23,7 @@ def write_host_tower(nodes,nodes_size,database,database_boolean):
     data = file.readlines()
     i = 0
     while i < nodes_size:
-      data[i+1] = nodes[i] +"\n"
+      data[i] = nodes[i] +"\n"
       i += 1
     if database_boolean == "true":
       data[i] = database + "\n"

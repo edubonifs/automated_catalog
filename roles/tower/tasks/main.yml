@@ -3,6 +3,6 @@
 - import_tasks: download_bundle.yml
   when: not downloaded
 - import_tasks: subscription.yml
-  when: sub and downloaded
+  when: sub and downloaded and not install
 - import_tasks: install_tower.yml
   when: install and downloaded

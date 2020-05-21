@@ -1,102 +1,372 @@
-Using /home/quicklab/automated_catalog/roles/tower/files/tower-setup/ansible.cfg as config file
-[WARNING]: Could not match supplied host pattern, ignoring: instance_group_*
-[WARNING]: Could not match supplied host pattern, ignoring: isolated_group_*
+[0;34mUsing /home/quicklab/automated_catalog/roles/tower/files/tower-setup/ansible.cfg as config file[0m
+[1;35m[WARNING]: Could not match supplied host pattern, ignoring: instance_group_*[0m
+[1;35m[0m
+[1;35m[WARNING]: Could not match supplied host pattern, ignoring: isolated_group_*[0m
+[1;35m[0m
 
-PLAY [tower:database:instance_group_*:isolated_group_*] ************************
+PLAY [tower:database:instance_group_*:isolated_group_*] ********************************************************
 
-TASK [check_config_static : Ensure expected variables are defined] *************
-skipping: [node-7] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}
-skipping: [node-7] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}
-skipping: [node-7] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}
-skipping: [node-8] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}
-skipping: [node-9] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}
-skipping: [node-8] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}
-skipping: [node-8] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}
-skipping: [node-9] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}
-skipping: [node-9] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure expected variables are defined] *********************************************
+[0;36mskipping: [node-7] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Ensure cluster hosts are not localhost] ************
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
-skipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}
-skipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure cluster hosts are not localhost] ********************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Check that controller uses queue name and not group name] ***
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
-skipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}
-skipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Check that controller uses queue name and not group name] **************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Check that group names do not conflict with instance names] ***
-skipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
-skipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Check that group names do not conflict with instance names] ************************
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Detect unsupported HA inventory file] **************
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Detect unsupported HA inventory file] **********************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Ensure at least one tower host is defined] *********
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure at least one tower host is defined] *****************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Check that no instance groups are named tower] *****
-skipping: [node-7] => (item=ungrouped)  => {"ansible_loop_var": "item", "changed": false, "item": "ungrouped", "skip_reason": "Conditional result was False"}
-skipping: [node-7] => (item=all)  => {"ansible_loop_var": "item", "changed": false, "item": "all", "skip_reason": "Conditional result was False"}
-skipping: [node-7] => (item=tower)  => {"ansible_loop_var": "item", "changed": false, "item": "tower", "skip_reason": "Conditional result was False"}
-skipping: [node-7] => (item=database)  => {"ansible_loop_var": "item", "changed": false, "item": "database", "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Check that no instance groups are named tower] *************************************
+[0;36mskipping: [node-7] => (item=ungrouped)  => {"ansible_loop_var": "item", "changed": false, "item": "ungrouped", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => (item=all)  => {"ansible_loop_var": "item", "changed": false, "item": "all", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => (item=tower)  => {"ansible_loop_var": "item", "changed": false, "item": "tower", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => (item=database)  => {"ansible_loop_var": "item", "changed": false, "item": "database", "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Ensure only one database host exists] **************
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure only one database host exists] **********************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Ensure when postgres host is defined that the port is defined] ***
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure when postgres host is defined that the port is defined] *********************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Ensure that when a database host is specified, that pg_host is defined] ***
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure that when a database host is specified, that pg_host is defined] ************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Ensure that when a database host is specified, that pg_port is defined] ***
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure that when a database host is specified, that pg_port is defined] ************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Ensure that pg_hashed_password is not set] *********
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure that pg_hashed_password is not set] *****************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Ensure that if we have web cert, we also have key] ***
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Ensure that if we have web cert, we also have key] *********************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : Preflight check - verify certificates for Postgres SSL install] ***
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : Preflight check - verify certificates for Postgres SSL install] ********************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : HA mode requires an external postgres database with pg_host defined] ***
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : HA mode requires an external postgres database with pg_host defined] ***************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [check_config_static : HA mode requires an external postgres database with pg_port defined] ***
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [check_config_static : HA mode requires an external postgres database with pg_port defined] ***************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [config_dynamic : Set database to internal or external] *******************
-ok: [node-8] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}
-ok: [node-7] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}
-ok: [node-9] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}
+TASK [config_dynamic : Set database to internal or external] ***************************************************
+[0;32mok: [node-7] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}[0m
+[0;32mok: [node-8] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}[0m
+[0;32mok: [node-9] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}[0m
 
-TASK [config_dynamic : Database decision] **************************************
-ok: [node-7] => {
-    "config_dynamic_database": "external"
-}
-ok: [node-8] => {
-    "config_dynamic_database": "external"
-}
-ok: [node-9] => {
-    "config_dynamic_database": "external"
-}
+TASK [config_dynamic : Database decision] **********************************************************************
+[0;32mok: [node-7] => {[0m
+[0;32m    "config_dynamic_database": "external"[0m
+[0;32m}[0m
+[0;32mok: [node-8] => {[0m
+[0;32m    "config_dynamic_database": "external"[0m
+[0;32m}[0m
+[0;32mok: [node-9] => {[0m
+[0;32m    "config_dynamic_database": "external"[0m
+[0;32m}[0m
 
-TASK [config_dynamic : Set postgres host and port to local if not set] *********
-skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
-skipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}
-skipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [config_dynamic : Set postgres host and port to local if not set] *****************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
-TASK [config_dynamic : Ensure connectivity to hosts and gather facts] **********
-fatal: [node-8]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
-fatal: [node-9]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
-fatal: [node-7]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
+TASK [config_dynamic : Ensure connectivity to hosts and gather facts] ******************************************
+[0;32mok: [node-7][0m
+[0;32mok: [node-8][0m
+[0;32mok: [node-9][0m
 
-PLAY RECAP *********************************************************************
-node-7                     : ok=2    changed=0    unreachable=1    failed=0    skipped=17   rescued=0    ignored=0   
-node-8                     : ok=2    changed=0    unreachable=1    failed=0    skipped=5    rescued=0    ignored=0   
-node-9                     : ok=2    changed=0    unreachable=1    failed=0    skipped=5    rescued=0    ignored=0   
+TASK [config_dynamic : Ensure user is root] ********************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
 
+PLAY [Group nodes by OS distribution] **************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+[0;32mok: [node-7][0m
+[0;32mok: [node-8][0m
+[0;32mok: [node-9][0m
+
+TASK [group hosts by distribution] *****************************************************************************
+[0;32mok: [node-7] => {"add_group": "RedHat_7", "changed": false, "parent_groups": ["all"]}[0m
+[0;32mok: [node-8] => {"add_group": "RedHat_7", "changed": false, "parent_groups": ["all"]}[0m
+[0;32mok: [node-9] => {"add_group": "RedHat_7", "changed": false, "parent_groups": ["all"]}[0m
+[1;35m[WARNING]: Could not match supplied host pattern, ignoring: CentOS_7[0m
+[1;35m[0m
+[1;35m[WARNING]: Could not match supplied host pattern, ignoring: RedHat_8[0m
+[1;35m[0m
+[1;35m[WARNING]: Could not match supplied host pattern, ignoring: CentOS_8[0m
+[1;35m[0m
+
+PLAY [Group supported distributions] ***************************************************************************
+
+TASK [Retrieve the point in time version (CentOS)] *************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [Set the proper ansible_distribution_version fact (CentOS)] ***********************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [group hosts for supported distributions] *****************************************************************
+[0;32mok: [node-7] => {"add_group": "supported", "changed": false, "parent_groups": ["all"]}[0m
+[0;32mok: [node-8] => {"add_group": "supported", "changed": false, "parent_groups": ["all"]}[0m
+[0;32mok: [node-9] => {"add_group": "supported", "changed": false, "parent_groups": ["all"]}[0m
+[1;35m[WARNING]: Could not match supplied host pattern, ignoring: none[0m
+[1;35m[0m
+
+PLAY [Group deprecated distributions] **************************************************************************
+[0;36mskipping: no hosts matched[0m
+
+PLAY [Ensure all node OS distributions are supported] **********************************************************
+[0;36mskipping: no hosts matched[0m
+[1;35m[WARNING]: Could not match supplied host pattern, ignoring: deprecated[0m
+[1;35m[0m
+
+PLAY [Check for deprecated platforms] **************************************************************************
+[0;36mskipping: no hosts matched[0m
+
+PLAY [Define role discovered variables, usable throughout the playbook] ****************************************
+
+TASK [postgres : include_vars] *********************************************************************************
+[0;32mok: [node-7] => (item=/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/../vars/RedHat-7.yml) => {"ansible_facts": {"existing_pg_bin": "/usr/pgsql-9.6/bin", "existing_pg_dir": "/var/lib/pgsql/9.6/data", "existing_pg_name": "postgresql96", "extra_env": {"LD_LIBRARY_PATH": "/opt/rh/rh-postgresql10/root/usr/lib64"}, "pg_bash": "scl enable rh-postgresql10 --", "pg_conf_bin": "/opt/rh/rh-postgresql10/root/bin", "pg_conf_dir": "/var/opt/rh/rh-postgresql10/lib/pgsql/data", "pg_conf_location": "{{ pg_conf_dir }}/postgresql.conf", "pg_hba_location": "{{ pg_conf_dir }}/pg_hba.conf", "pg_initdb_command": "{{ pg_conf_bin }}/postgresql-setup initdb", "pg_systemd_name": "postgresql-9.6", "pg_upgrade_location": "{{ pg_conf_bin }}/pg_upgrade", "postgres_init_name": "rh-postgresql10-postgresql"}, "ansible_included_var_files": ["/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/RedHat-7.yml"], "ansible_loop_var": "item", "changed": false, "item": "/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/../vars/RedHat-7.yml"}[0m
+[0;32mok: [node-8] => (item=/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/../vars/RedHat-7.yml) => {"ansible_facts": {"existing_pg_bin": "/usr/pgsql-9.6/bin", "existing_pg_dir": "/var/lib/pgsql/9.6/data", "existing_pg_name": "postgresql96", "extra_env": {"LD_LIBRARY_PATH": "/opt/rh/rh-postgresql10/root/usr/lib64"}, "pg_bash": "scl enable rh-postgresql10 --", "pg_conf_bin": "/opt/rh/rh-postgresql10/root/bin", "pg_conf_dir": "/var/opt/rh/rh-postgresql10/lib/pgsql/data", "pg_conf_location": "{{ pg_conf_dir }}/postgresql.conf", "pg_hba_location": "{{ pg_conf_dir }}/pg_hba.conf", "pg_initdb_command": "{{ pg_conf_bin }}/postgresql-setup initdb", "pg_systemd_name": "postgresql-9.6", "pg_upgrade_location": "{{ pg_conf_bin }}/pg_upgrade", "postgres_init_name": "rh-postgresql10-postgresql"}, "ansible_included_var_files": ["/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/RedHat-7.yml"], "ansible_loop_var": "item", "changed": false, "item": "/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/../vars/RedHat-7.yml"}[0m
+[0;32mok: [node-9] => (item=/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/../vars/RedHat-7.yml) => {"ansible_facts": {"existing_pg_bin": "/usr/pgsql-9.6/bin", "existing_pg_dir": "/var/lib/pgsql/9.6/data", "existing_pg_name": "postgresql96", "extra_env": {"LD_LIBRARY_PATH": "/opt/rh/rh-postgresql10/root/usr/lib64"}, "pg_bash": "scl enable rh-postgresql10 --", "pg_conf_bin": "/opt/rh/rh-postgresql10/root/bin", "pg_conf_dir": "/var/opt/rh/rh-postgresql10/lib/pgsql/data", "pg_conf_location": "{{ pg_conf_dir }}/postgresql.conf", "pg_hba_location": "{{ pg_conf_dir }}/pg_hba.conf", "pg_initdb_command": "{{ pg_conf_bin }}/postgresql-setup initdb", "pg_systemd_name": "postgresql-9.6", "pg_upgrade_location": "{{ pg_conf_bin }}/pg_upgrade", "postgres_init_name": "rh-postgresql10-postgresql"}, "ansible_included_var_files": ["/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/RedHat-7.yml"], "ansible_loop_var": "item", "changed": false, "item": "/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/postgres/vars/../vars/RedHat-7.yml"}[0m
+
+TASK [postgres : include_tasks] ********************************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [postgres : include_tasks] ********************************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+PLAY [Sanity check and prep Tower node(s)] *********************************************************************
+
+TASK [preflight : Preflight check - require new enough Ansible] ************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - Fail if this machine lacks sufficient RAM.] ********************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - Get Hard Max FD limit] *****************************************************
+[0;32mok: [node-8] => {"changed": false, "cmd": "ulimit -H -n", "delta": "0:00:00.012785", "end": "2020-05-21 10:22:35.191830", "rc": 0, "start": "2020-05-21 10:22:35.179045", "stderr": "", "stderr_lines": [], "stdout": "4096", "stdout_lines": ["4096"]}[0m
+[0;32mok: [node-7] => {"changed": false, "cmd": "ulimit -H -n", "delta": "0:00:00.013493", "end": "2020-05-21 10:22:35.263197", "rc": 0, "start": "2020-05-21 10:22:35.249704", "stderr": "", "stderr_lines": [], "stdout": "4096", "stdout_lines": ["4096"]}[0m
+
+TASK [preflight : Preflight check - Verify minimum open fds] ***************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - Get /var/log permissions] **************************************************
+[0;32mok: [node-8] => {"changed": false, "stat": {"atime": 1582647973.5574427, "attr_flags": "", "attributes": [], "block_size": 4096, "blocks": 8, "charset": "binary", "ctime": 1590069969.141921, "dev": 64769, "device_type": 0, "executable": true, "exists": true, "gid": 0, "gr_name": "root", "inode": 12744200, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mimetype": "inode/directory", "mode": "0755", "mtime": 1590069969.141921, "nlink": 9, "path": "/var/log", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "version": "18446744073143126967", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}[0m
+[0;32mok: [node-7] => {"changed": false, "stat": {"atime": 1582647973.5574427, "attr_flags": "", "attributes": [], "block_size": 4096, "blocks": 8, "charset": "binary", "ctime": 1590069969.48789, "dev": 64769, "device_type": 0, "executable": true, "exists": true, "gid": 0, "gr_name": "root", "inode": 12744200, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mimetype": "inode/directory", "mode": "0755", "mtime": 1590069969.48789, "nlink": 9, "path": "/var/log", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "version": "18446744073143126967", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}[0m
+
+TASK [preflight : Preflight check - Does /var/log have appropriate permissions?] *******************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - Read in tower version] *****************************************************
+[0;31mfatal: [node-8]: FAILED! => {"changed": false, "msg": "file not found: /var/lib/awx/.tower_version"}[0m
+[0;36m...ignoring[0m
+[0;31mfatal: [node-7]: FAILED! => {"changed": false, "msg": "file not found: /var/lib/awx/.tower_version"}[0m
+[0;36m...ignoring[0m
+
+TASK [preflight : Preflight check - Passwords must be defined for a fresh install] *****************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Find mount options for /var, /var/tmp, and /tmp] *********************************************
+[0;32mok: [node-7] => (item=/var) => {"ansible_loop_var": "item", "backup": "", "changed": false, "found": 0, "item": "/var", "msg": ""}[0m
+[0;32mok: [node-8] => (item=/var) => {"ansible_loop_var": "item", "backup": "", "changed": false, "found": 0, "item": "/var", "msg": ""}[0m
+[0;32mok: [node-7] => (item=/var/tmp) => {"ansible_loop_var": "item", "backup": "", "changed": false, "found": 0, "item": "/var/tmp", "msg": ""}[0m
+[0;32mok: [node-8] => (item=/var/tmp) => {"ansible_loop_var": "item", "backup": "", "changed": false, "found": 0, "item": "/var/tmp", "msg": ""}[0m
+[0;32mok: [node-7] => (item=/tmp) => {"ansible_loop_var": "item", "backup": "", "changed": false, "found": 0, "item": "/tmp", "msg": ""}[0m
+[0;32mok: [node-8] => (item=/tmp) => {"ansible_loop_var": "item", "backup": "", "changed": false, "found": 0, "item": "/tmp", "msg": ""}[0m
+
+TASK [preflight : Fail if the filesystem is mounted with noexec] ***********************************************
+[0;36mskipping: [node-7] => (item={'ansible_loop_var': u'item', 'failed': False, u'changed': False, 'item': u'/var', u'found': 0, u'invocation': {u'module_args': {u'directory_mode': None, u'force': None, u'remote_src': None, u'selevel': None, u'backrefs': False, u'insertafter': None, u'follow': False, u'owner': None, u'path': u'/proc/mounts', u'line': None, u'validate': None, u'src': None, u'group': None, u'name': u'/proc/mounts', u'insertbefore': None, u'unsafe_writes': None, u'delimiter': None, u'create': False, u'seuser': None, u'serole': None, u'regexp': u' /var .*noexec', u'content': None, u'state': u'absent', u'mode': None, u'firstmatch': False, u'attributes': None, u'backup': False, u'setype': None}}, u'diff': [{u'after': u'', u'after_header': u'/proc/mounts (content)', u'before_header': u'/proc/mounts (content)', u'before': u''}, {u'after_header': u'/proc/mounts (file attributes)', u'before_header': u'/proc/mounts (file attributes)'}], u'backup': u'', u'msg': u''})  => {"ansible_loop_var": "item", "changed": false, "item": {"ansible_loop_var": "item", "backup": "", "changed": false, "diff": [{"after": "", "after_header": "/proc/mounts (content)", "before": "", "before_header": "/proc/mounts (content)"}, {"after_header": "/proc/mounts (file attributes)", "before_header": "/proc/mounts (file attributes)"}], "failed": false, "found": 0, "invocation": {"module_args": {"attributes": null, "backrefs": false, "backup": false, "content": null, "create": false, "delimiter": null, "directory_mode": null, "firstmatch": false, "follow": false, "force": null, "group": null, "insertafter": null, "insertbefore": null, "line": null, "mode": null, "name": "/proc/mounts", "owner": null, "path": "/proc/mounts", "regexp": " /var .*noexec", "remote_src": null, "selevel": null, "serole": null, "setype": null, "seuser": null, "src": null, "state": "absent", "unsafe_writes": null, "validate": null}}, "item": "/var", "msg": ""}, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => (item={'ansible_loop_var': u'item', 'failed': False, u'changed': False, 'item': u'/var/tmp', u'found': 0, u'invocation': {u'module_args': {u'directory_mode': None, u'force': None, u'remote_src': None, u'selevel': None, u'backrefs': False, u'insertafter': None, u'follow': False, u'owner': None, u'path': u'/proc/mounts', u'line': None, u'validate': None, u'src': None, u'group': None, u'name': u'/proc/mounts', u'insertbefore': None, u'unsafe_writes': None, u'delimiter': None, u'create': False, u'seuser': None, u'serole': None, u'regexp': u' /var/tmp .*noexec', u'content': None, u'state': u'absent', u'mode': None, u'firstmatch': False, u'attributes': None, u'backup': False, u'setype': None}}, u'diff': [{u'after': u'', u'after_header': u'/proc/mounts (content)', u'before_header': u'/proc/mounts (content)', u'before': u''}, {u'after_header': u'/proc/mounts (file attributes)', u'before_header': u'/proc/mounts (file attributes)'}], u'backup': u'', u'msg': u''})  => {"ansible_loop_var": "item", "changed": false, "item": {"ansible_loop_var": "item", "backup": "", "changed": false, "diff": [{"after": "", "after_header": "/proc/mounts (content)", "before": "", "before_header": "/proc/mounts (content)"}, {"after_header": "/proc/mounts (file attributes)", "before_header": "/proc/mounts (file attributes)"}], "failed": false, "found": 0, "invocation": {"module_args": {"attributes": null, "backrefs": false, "backup": false, "content": null, "create": false, "delimiter": null, "directory_mode": null, "firstmatch": false, "follow": false, "force": null, "group": null, "insertafter": null, "insertbefore": null, "line": null, "mode": null, "name": "/proc/mounts", "owner": null, "path": "/proc/mounts", "regexp": " /var/tmp .*noexec", "remote_src": null, "selevel": null, "serole": null, "setype": null, "seuser": null, "src": null, "state": "absent", "unsafe_writes": null, "validate": null}}, "item": "/var/tmp", "msg": ""}, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => (item={'ansible_loop_var': u'item', 'failed': False, u'changed': False, 'item': u'/tmp', u'found': 0, u'invocation': {u'module_args': {u'directory_mode': None, u'force': None, u'remote_src': None, u'selevel': None, u'backrefs': False, u'insertafter': None, u'follow': False, u'owner': None, u'path': u'/proc/mounts', u'line': None, u'validate': None, u'src': None, u'group': None, u'name': u'/proc/mounts', u'insertbefore': None, u'unsafe_writes': None, u'delimiter': None, u'create': False, u'seuser': None, u'serole': None, u'regexp': u' /tmp .*noexec', u'content': None, u'state': u'absent', u'mode': None, u'firstmatch': False, u'attributes': None, u'backup': False, u'setype': None}}, u'diff': [{u'after': u'', u'after_header': u'/proc/mounts (content)', u'before_header': u'/proc/mounts (content)', u'before': u''}, {u'after_header': u'/proc/mounts (file attributes)', u'before_header': u'/proc/mounts (file attributes)'}], u'backup': u'', u'msg': u''})  => {"ansible_loop_var": "item", "changed": false, "item": {"ansible_loop_var": "item", "backup": "", "changed": false, "diff": [{"after": "", "after_header": "/proc/mounts (content)", "before": "", "before_header": "/proc/mounts (content)"}, {"after_header": "/proc/mounts (file attributes)", "before_header": "/proc/mounts (file attributes)"}], "failed": false, "found": 0, "invocation": {"module_args": {"attributes": null, "backrefs": false, "backup": false, "content": null, "create": false, "delimiter": null, "directory_mode": null, "firstmatch": false, "follow": false, "force": null, "group": null, "insertafter": null, "insertbefore": null, "line": null, "mode": null, "name": "/proc/mounts", "owner": null, "path": "/proc/mounts", "regexp": " /tmp .*noexec", "remote_src": null, "selevel": null, "serole": null, "setype": null, "seuser": null, "src": null, "state": "absent", "unsafe_writes": null, "validate": null}}, "item": "/tmp", "msg": ""}, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => (item={'ansible_loop_var': u'item', 'failed': False, u'changed': False, 'item': u'/var', u'found': 0, u'invocation': {u'module_args': {u'directory_mode': None, u'force': None, u'remote_src': None, u'selevel': None, u'backrefs': False, u'insertafter': None, u'follow': False, u'owner': None, u'path': u'/proc/mounts', u'line': None, u'validate': None, u'src': None, u'group': None, u'name': u'/proc/mounts', u'insertbefore': None, u'unsafe_writes': None, u'delimiter': None, u'create': False, u'seuser': None, u'serole': None, u'regexp': u' /var .*noexec', u'content': None, u'state': u'absent', u'mode': None, u'firstmatch': False, u'attributes': None, u'backup': False, u'setype': None}}, u'diff': [{u'after': u'', u'after_header': u'/proc/mounts (content)', u'before_header': u'/proc/mounts (content)', u'before': u''}, {u'after_header': u'/proc/mounts (file attributes)', u'before_header': u'/proc/mounts (file attributes)'}], u'backup': u'', u'msg': u''})  => {"ansible_loop_var": "item", "changed": false, "item": {"ansible_loop_var": "item", "backup": "", "changed": false, "diff": [{"after": "", "after_header": "/proc/mounts (content)", "before": "", "before_header": "/proc/mounts (content)"}, {"after_header": "/proc/mounts (file attributes)", "before_header": "/proc/mounts (file attributes)"}], "failed": false, "found": 0, "invocation": {"module_args": {"attributes": null, "backrefs": false, "backup": false, "content": null, "create": false, "delimiter": null, "directory_mode": null, "firstmatch": false, "follow": false, "force": null, "group": null, "insertafter": null, "insertbefore": null, "line": null, "mode": null, "name": "/proc/mounts", "owner": null, "path": "/proc/mounts", "regexp": " /var .*noexec", "remote_src": null, "selevel": null, "serole": null, "setype": null, "seuser": null, "src": null, "state": "absent", "unsafe_writes": null, "validate": null}}, "item": "/var", "msg": ""}, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => (item={'ansible_loop_var': u'item', 'failed': False, u'changed': False, 'item': u'/var/tmp', u'found': 0, u'invocation': {u'module_args': {u'directory_mode': None, u'force': None, u'remote_src': None, u'selevel': None, u'backrefs': False, u'insertafter': None, u'follow': False, u'owner': None, u'path': u'/proc/mounts', u'line': None, u'validate': None, u'src': None, u'group': None, u'name': u'/proc/mounts', u'insertbefore': None, u'unsafe_writes': None, u'delimiter': None, u'create': False, u'seuser': None, u'serole': None, u'regexp': u' /var/tmp .*noexec', u'content': None, u'state': u'absent', u'mode': None, u'firstmatch': False, u'attributes': None, u'backup': False, u'setype': None}}, u'diff': [{u'after': u'', u'after_header': u'/proc/mounts (content)', u'before_header': u'/proc/mounts (content)', u'before': u''}, {u'after_header': u'/proc/mounts (file attributes)', u'before_header': u'/proc/mounts (file attributes)'}], u'backup': u'', u'msg': u''})  => {"ansible_loop_var": "item", "changed": false, "item": {"ansible_loop_var": "item", "backup": "", "changed": false, "diff": [{"after": "", "after_header": "/proc/mounts (content)", "before": "", "before_header": "/proc/mounts (content)"}, {"after_header": "/proc/mounts (file attributes)", "before_header": "/proc/mounts (file attributes)"}], "failed": false, "found": 0, "invocation": {"module_args": {"attributes": null, "backrefs": false, "backup": false, "content": null, "create": false, "delimiter": null, "directory_mode": null, "firstmatch": false, "follow": false, "force": null, "group": null, "insertafter": null, "insertbefore": null, "line": null, "mode": null, "name": "/proc/mounts", "owner": null, "path": "/proc/mounts", "regexp": " /var/tmp .*noexec", "remote_src": null, "selevel": null, "serole": null, "setype": null, "seuser": null, "src": null, "state": "absent", "unsafe_writes": null, "validate": null}}, "item": "/var/tmp", "msg": ""}, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => (item={'ansible_loop_var': u'item', 'failed': False, u'changed': False, 'item': u'/tmp', u'found': 0, u'invocation': {u'module_args': {u'directory_mode': None, u'force': None, u'remote_src': None, u'selevel': None, u'backrefs': False, u'insertafter': None, u'follow': False, u'owner': None, u'path': u'/proc/mounts', u'line': None, u'validate': None, u'src': None, u'group': None, u'name': u'/proc/mounts', u'insertbefore': None, u'unsafe_writes': None, u'delimiter': None, u'create': False, u'seuser': None, u'serole': None, u'regexp': u' /tmp .*noexec', u'content': None, u'state': u'absent', u'mode': None, u'firstmatch': False, u'attributes': None, u'backup': False, u'setype': None}}, u'diff': [{u'after': u'', u'after_header': u'/proc/mounts (content)', u'before_header': u'/proc/mounts (content)', u'before': u''}, {u'after_header': u'/proc/mounts (file attributes)', u'before_header': u'/proc/mounts (file attributes)'}], u'backup': u'', u'msg': u''})  => {"ansible_loop_var": "item", "changed": false, "item": {"ansible_loop_var": "item", "backup": "", "changed": false, "diff": [{"after": "", "after_header": "/proc/mounts (content)", "before": "", "before_header": "/proc/mounts (content)"}, {"after_header": "/proc/mounts (file attributes)", "before_header": "/proc/mounts (file attributes)"}], "failed": false, "found": 0, "invocation": {"module_args": {"attributes": null, "backrefs": false, "backup": false, "content": null, "create": false, "delimiter": null, "directory_mode": null, "firstmatch": false, "follow": false, "force": null, "group": null, "insertafter": null, "insertbefore": null, "line": null, "mode": null, "name": "/proc/mounts", "owner": null, "path": "/proc/mounts", "regexp": " /tmp .*noexec", "remote_src": null, "selevel": null, "serole": null, "setype": null, "seuser": null, "src": null, "state": "absent", "unsafe_writes": null, "validate": null}}, "item": "/tmp", "msg": ""}, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - User must be on Tower 3.5.x to upgrade] ************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - check Tower license type] **************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - check Tower license type (detailed)] ***************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - check Tower license validity for upgrades] *********************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - check Tower license compliance for upgrades] *******************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [preflight : Preflight check - Ensure rabbitmq_host is not defined] ***************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+PLAY [Install custom CA certificate, if provided] **************************************************************
+
+TASK [ca_cert : Copy custom CA cert] ***************************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+PLAY [Prep installation repos] *********************************************************************************
+
+TASK [repos_el : include_vars] *********************************************************************************
+[0;32mok: [node-7] => (item=/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/../vars/RedHat-7.yml) => {"ansible_facts": {"redhat_rhsm_repos": ["rhel-7-server-extras-rpms", "rhel-server-rhscl-7-rpms"], "redhat_rhui_repos": ["rhui-rhel-7-server-rhui-extras-rpms", "rhui-rhel-server-rhui-rhscl-7-rpms"], "yum_repo_keys": ["RPM-GPG-KEY-redhat-release"]}, "ansible_included_var_files": ["/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/RedHat-7.yml"], "ansible_loop_var": "item", "changed": false, "item": "/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/../vars/RedHat-7.yml"}[0m
+[0;32mok: [node-8] => (item=/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/../vars/RedHat-7.yml) => {"ansible_facts": {"redhat_rhsm_repos": ["rhel-7-server-extras-rpms", "rhel-server-rhscl-7-rpms"], "redhat_rhui_repos": ["rhui-rhel-7-server-rhui-extras-rpms", "rhui-rhel-server-rhui-rhscl-7-rpms"], "yum_repo_keys": ["RPM-GPG-KEY-redhat-release"]}, "ansible_included_var_files": ["/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/RedHat-7.yml"], "ansible_loop_var": "item", "changed": false, "item": "/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/../vars/RedHat-7.yml"}[0m
+[0;32mok: [node-9] => (item=/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/../vars/RedHat-7.yml) => {"ansible_facts": {"redhat_rhsm_repos": ["rhel-7-server-extras-rpms", "rhel-server-rhscl-7-rpms"], "redhat_rhui_repos": ["rhui-rhel-7-server-rhui-extras-rpms", "rhui-rhel-server-rhui-rhscl-7-rpms"], "yum_repo_keys": ["RPM-GPG-KEY-redhat-release"]}, "ansible_included_var_files": ["/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/RedHat-7.yml"], "ansible_loop_var": "item", "changed": false, "item": "/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/repos_el/vars/../vars/RedHat-7.yml"}[0m
+
+TASK [repos_el : Check that tower_package_version is set] ******************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : Install yum repo keys] ************************************************************************
+[0;32mok: [node-8] => (item=RPM-GPG-KEY-redhat-release) => {"ansible_loop_var": "item", "changed": false, "checksum": "379962dabeaa7fd9e3b57d3669198151279fe525", "dest": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release", "gid": 0, "group": "root", "item": "RPM-GPG-KEY-redhat-release", "mode": "0644", "owner": "root", "path": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release", "secontext": "system_u:object_r:cert_t:s0", "size": 1854, "state": "file", "uid": 0}[0m
+[0;32mok: [node-7] => (item=RPM-GPG-KEY-redhat-release) => {"ansible_loop_var": "item", "changed": false, "checksum": "379962dabeaa7fd9e3b57d3669198151279fe525", "dest": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release", "gid": 0, "group": "root", "item": "RPM-GPG-KEY-redhat-release", "mode": "0644", "owner": "root", "path": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release", "secontext": "system_u:object_r:cert_t:s0", "size": 1854, "state": "file", "uid": 0}[0m
+[0;32mok: [node-9] => (item=RPM-GPG-KEY-redhat-release) => {"ansible_loop_var": "item", "changed": false, "checksum": "379962dabeaa7fd9e3b57d3669198151279fe525", "dest": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release", "gid": 0, "group": "root", "item": "RPM-GPG-KEY-redhat-release", "mode": "0644", "owner": "root", "path": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release", "secontext": "system_u:object_r:cert_t:s0", "size": 1854, "state": "file", "uid": 0}[0m
+
+TASK [repos_el : Install yum repos that arrive via release packages] *******************************************
+[0;32mok: [node-8] => {"changed": false, "msg": "", "rc": 0, "results": []}[0m
+[0;32mok: [node-7] => {"changed": false, "msg": "", "rc": 0, "results": []}[0m
+[0;32mok: [node-9] => {"changed": false, "msg": "", "rc": 0, "results": []}[0m
+
+TASK [repos_el : Install subscription-manager-rhsm-certificates] ***********************************************
+[0;32mok: [node-9] => {"changed": false, "msg": "", "rc": 0, "results": ["subscription-manager-rhsm-certificates-1.24.26-1.el7.x86_64 providing subscription-manager-rhsm-certificates is already installed"]}[0m
+[0;32mok: [node-7] => {"changed": false, "msg": "", "rc": 0, "results": ["subscription-manager-rhsm-certificates-1.24.26-1.el7.x86_64 providing subscription-manager-rhsm-certificates is already installed"]}[0m
+[0;32mok: [node-8] => {"changed": false, "msg": "", "rc": 0, "results": ["subscription-manager-rhsm-certificates-1.24.26-1.el7.x86_64 providing subscription-manager-rhsm-certificates is already installed"]}[0m
+
+TASK [repos_el : Determine if AWS rhui repository exists] ******************************************************
+[0;32mok: [node-8] => {"changed": false, "stat": {"exists": false}}[0m
+[0;32mok: [node-7] => {"changed": false, "stat": {"exists": false}}[0m
+[0;32mok: [node-9] => {"changed": false, "stat": {"exists": false}}[0m
+
+TASK [repos_el : Update rh-amazon-rhui-client (RHEL EC2 only)] *************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : Determine RHUI version] ***********************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : set_fact] *************************************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : set_fact] *************************************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : Enable AWS rhui repositories] *****************************************************************
+
+TASK [repos_el : Determine if rhui repository exists] **********************************************************
+[0;32mok: [node-7] => {"changed": false, "stat": {"exists": false}}[0m
+[0;32mok: [node-8] => {"changed": false, "stat": {"exists": false}}[0m
+[0;32mok: [node-9] => {"changed": false, "stat": {"exists": false}}[0m
+
+TASK [repos_el : Enable rhui repositories] *********************************************************************
+[0;36mskipping: [node-7] => (item=rhui-rhel-7-server-rhui-extras-rpms)  => {"ansible_loop_var": "item", "changed": false, "item": "rhui-rhel-7-server-rhui-extras-rpms", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-7] => (item=rhui-rhel-server-rhui-rhscl-7-rpms)  => {"ansible_loop_var": "item", "changed": false, "item": "rhui-rhel-server-rhui-rhscl-7-rpms", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => (item=rhui-rhel-7-server-rhui-extras-rpms)  => {"ansible_loop_var": "item", "changed": false, "item": "rhui-rhel-7-server-rhui-extras-rpms", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => (item=rhui-rhel-server-rhui-rhscl-7-rpms)  => {"ansible_loop_var": "item", "changed": false, "item": "rhui-rhel-server-rhui-rhscl-7-rpms", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => (item=rhui-rhel-7-server-rhui-extras-rpms)  => {"ansible_loop_var": "item", "changed": false, "item": "rhui-rhel-7-server-rhui-extras-rpms", "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => (item=rhui-rhel-server-rhui-rhscl-7-rpms)  => {"ansible_loop_var": "item", "changed": false, "item": "rhui-rhel-server-rhui-rhscl-7-rpms", "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : Determine if rhsm repository exists] **********************************************************
+[0;32mok: [node-7] => {"changed": false, "stat": {"atime": 1590070195.3689167, "attr_flags": "", "attributes": [], "block_size": 4096, "blocks": 1112, "charset": "us-ascii", "checksum": "89e83800dbcff818a9c305bdbbb7d33f2f7cd380", "ctime": 1590070187.838916, "dev": 64769, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 12585194, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mimetype": "text/plain", "mode": "0644", "mtime": 1590070187.838916, "nlink": 1, "path": "/etc/yum.repos.d/redhat.repo", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 569117, "uid": 0, "version": "18446744073605260468", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}[0m
+[0;32mok: [node-8] => {"changed": false, "stat": {"atime": 1590070171.019622, "attr_flags": "", "attributes": [], "block_size": 4096, "blocks": 1112, "charset": "us-ascii", "checksum": "8b7a5cd0911f457b926a740352808f3bf7e6c712", "ctime": 1590070168.8985517, "dev": 64769, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 12585194, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mimetype": "text/plain", "mode": "0644", "mtime": 1590070168.8985517, "nlink": 1, "path": "/etc/yum.repos.d/redhat.repo", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 569117, "uid": 0, "version": "18446744071622435925", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}[0m
+[0;32mok: [node-9] => {"changed": false, "stat": {"atime": 1590070253.1331813, "attr_flags": "", "attributes": [], "block_size": 4096, "blocks": 1112, "charset": "us-ascii", "checksum": "fe8083c9072c1fa22d7afc77bbc277231d4c35ac", "ctime": 1590070250.9420974, "dev": 64769, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 12585194, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mimetype": "text/plain", "mode": "0644", "mtime": 1590070250.9420974, "nlink": 1, "path": "/etc/yum.repos.d/redhat.repo", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 569117, "uid": 0, "version": "18446744072341391894", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}[0m
+
+TASK [repos_el : Determine if rhsm system cert exists] *********************************************************
+[0;32mok: [node-8] => {"changed": false, "stat": {"atime": 1590069865.3424757, "attr_flags": "", "attributes": [], "block_size": 4096, "blocks": 8, "charset": "us-ascii", "checksum": "481dcbe05d75b9c8f455972f71a835f3cee9dd86", "ctime": 1590069865.3414757, "dev": 64769, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 13142355, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mimetype": "text/plain", "mode": "0640", "mtime": 1590069865.3414757, "nlink": 1, "path": "/etc/pki/consumer/cert.pem", "pw_name": "root", "readable": true, "rgrp": true, "roth": false, "rusr": true, "size": 2248, "uid": 0, "version": "797731059", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}[0m
+[0;32mok: [node-9] => {"changed": false, "stat": {"atime": 1590069867.8474412, "attr_flags": "", "attributes": [], "block_size": 4096, "blocks": 8, "charset": "us-ascii", "checksum": "bf663f2db351779d79a2d369ef7a80944333172f", "ctime": 1590069867.8464413, "dev": 64769, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 13142355, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mimetype": "text/plain", "mode": "0640", "mtime": 1590069867.8464413, "nlink": 1, "path": "/etc/pki/consumer/cert.pem", "pw_name": "root", "readable": true, "rgrp": true, "roth": false, "rusr": true, "size": 2248, "uid": 0, "version": "18446744073388227402", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}[0m
+[0;32mok: [node-7] => {"changed": false, "stat": {"atime": 1590069867.314878, "attr_flags": "", "attributes": [], "block_size": 4096, "blocks": 8, "charset": "us-ascii", "checksum": "b7ceebb21634591d34b87507b27b41c1ccd26d91", "ctime": 1590069867.3138778, "dev": 64769, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 13142356, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mimetype": "text/plain", "mode": "0640", "mtime": 1590069867.3138778, "nlink": 1, "path": "/etc/pki/consumer/cert.pem", "pw_name": "root", "readable": true, "rgrp": true, "roth": false, "rusr": true, "size": 2248, "uid": 0, "version": "18446744072672512873", "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}[0m
+
+TASK [repos_el : Enable rhsm repositories] *********************************************************************
+[0;33mchanged: [node-8] => (item=rhel-7-server-extras-rpms) => {"ansible_loop_var": "item", "changed": true, "cmd": ["subscription-manager", "repos", "--enable", "rhel-7-server-extras-rpms"], "delta": "0:01:04.712789", "end": "2020-05-21 10:24:31.476635", "item": "rhel-7-server-extras-rpms", "rc": 0, "start": "2020-05-21 10:23:26.763846", "stderr": "", "stderr_lines": [], "stdout": "Repository 'rhel-7-server-extras-rpms' is enabled for this system.", "stdout_lines": ["Repository 'rhel-7-server-extras-rpms' is enabled for this system."]}[0m
+[0;33mchanged: [node-7] => (item=rhel-7-server-extras-rpms) => {"ansible_loop_var": "item", "changed": true, "cmd": ["subscription-manager", "repos", "--enable", "rhel-7-server-extras-rpms"], "delta": "0:01:05.289735", "end": "2020-05-21 10:24:31.846716", "item": "rhel-7-server-extras-rpms", "rc": 0, "start": "2020-05-21 10:23:26.556981", "stderr": "", "stderr_lines": [], "stdout": "Repository 'rhel-7-server-extras-rpms' is enabled for this system.", "stdout_lines": ["Repository 'rhel-7-server-extras-rpms' is enabled for this system."]}[0m
+[0;33mchanged: [node-9] => (item=rhel-7-server-extras-rpms) => {"ansible_loop_var": "item", "changed": true, "cmd": ["subscription-manager", "repos", "--enable", "rhel-7-server-extras-rpms"], "delta": "0:01:11.133279", "end": "2020-05-21 10:24:38.047394", "item": "rhel-7-server-extras-rpms", "rc": 0, "start": "2020-05-21 10:23:26.914115", "stderr": "", "stderr_lines": [], "stdout": "Repository 'rhel-7-server-extras-rpms' is enabled for this system.", "stdout_lines": ["Repository 'rhel-7-server-extras-rpms' is enabled for this system."]}[0m
+[0;33mchanged: [node-8] => (item=rhel-server-rhscl-7-rpms) => {"ansible_loop_var": "item", "changed": true, "cmd": ["subscription-manager", "repos", "--enable", "rhel-server-rhscl-7-rpms"], "delta": "0:01:00.582386", "end": "2020-05-21 10:25:32.934784", "item": "rhel-server-rhscl-7-rpms", "rc": 0, "start": "2020-05-21 10:24:32.352398", "stderr": "", "stderr_lines": [], "stdout": "Repository 'rhel-server-rhscl-7-rpms' is enabled for this system.", "stdout_lines": ["Repository 'rhel-server-rhscl-7-rpms' is enabled for this system."]}[0m
+[0;33mchanged: [node-7] => (item=rhel-server-rhscl-7-rpms) => {"ansible_loop_var": "item", "changed": true, "cmd": ["subscription-manager", "repos", "--enable", "rhel-server-rhscl-7-rpms"], "delta": "0:01:06.210091", "end": "2020-05-21 10:25:38.883492", "item": "rhel-server-rhscl-7-rpms", "rc": 0, "start": "2020-05-21 10:24:32.673401", "stderr": "", "stderr_lines": [], "stdout": "Repository 'rhel-server-rhscl-7-rpms' is enabled for this system.", "stdout_lines": ["Repository 'rhel-server-rhscl-7-rpms' is enabled for this system."]}[0m
+[0;33mchanged: [node-9] => (item=rhel-server-rhscl-7-rpms) => {"ansible_loop_var": "item", "changed": true, "cmd": ["subscription-manager", "repos", "--enable", "rhel-server-rhscl-7-rpms"], "delta": "0:01:10.107815", "end": "2020-05-21 10:25:49.245491", "item": "rhel-server-rhscl-7-rpms", "rc": 0, "start": "2020-05-21 10:24:39.137676", "stderr": "", "stderr_lines": [], "stdout": "Repository 'rhel-server-rhscl-7-rpms' is enabled for this system.", "stdout_lines": ["Repository 'rhel-server-rhscl-7-rpms' is enabled for this system."]}[0m
+
+TASK [repos_el : Ensure rsync is installed] ********************************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : Copy bundle packages to repo source directory] ************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : Install the Tower bundle repository] **********************************************************
+[0;36mskipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [repos_el : Remove legacy rabbitmq repository] ************************************************************
+[0;32mok: [node-8] => {"changed": false, "path": "/etc/yum.repos.d/rabbitmq.repo", "state": "absent"}[0m
+[0;32mok: [node-9] => {"changed": false, "path": "/etc/yum.repos.d/rabbitmq.repo", "state": "absent"}[0m
+[0;32mok: [node-7] => {"changed": false, "path": "/etc/yum.repos.d/rabbitmq.repo", "state": "absent"}[0m
+
+TASK [repos_el : Install the Tower yum repository.] ************************************************************
+[0;32mok: [node-7] => {"changed": false, "checksum": "dd40798787d0aa85d8d492dcf6f427676a0c68ff", "dest": "/etc/yum.repos.d/ansible-tower.repo", "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/etc/yum.repos.d/ansible-tower.repo", "secontext": "system_u:object_r:system_conf_t:s0", "size": 484, "state": "file", "uid": 0}[0m
+[0;32mok: [node-8] => {"changed": false, "checksum": "dd40798787d0aa85d8d492dcf6f427676a0c68ff", "dest": "/etc/yum.repos.d/ansible-tower.repo", "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/etc/yum.repos.d/ansible-tower.repo", "secontext": "system_u:object_r:system_conf_t:s0", "size": 484, "state": "file", "uid": 0}[0m
+[0;32mok: [node-9] => {"changed": false, "checksum": "dd40798787d0aa85d8d492dcf6f427676a0c68ff", "dest": "/etc/yum.repos.d/ansible-tower.repo", "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/etc/yum.repos.d/ansible-tower.repo", "secontext": "system_u:object_r:system_conf_t:s0", "size": 484, "state": "file", "uid": 0}[0m
+
+PLAY [Install postgres database node] **************************************************************************
+
+TASK [include_role : packages_el] ******************************************************************************
+
+TASK [packages_el : include packages_el variables] *************************************************************
+[0;32mok: [node-9] => (item=/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/packages_el/vars/../vars/RedHat-7.yml) => {"ansible_facts": {"el_dependencies": ["python-psycopg2", "python-setuptools", "libselinux-python", "setools-libs", "yum-utils", "sudo", "acl"], "existing_pg_dir": "/var/lib/pgsql/9.6/data", "extra_env": {"LD_LIBRARY_PATH": "/opt/rh/rh-postgresql10/root/usr/lib64"}, "postgresql_packages": ["rh-postgresql10-postgresql-server", "rh-postgresql10-postgresql-contrib"], "upgrade_postgres": false}, "ansible_included_var_files": ["/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/packages_el/vars/RedHat-7.yml"], "ansible_loop_var": "item", "changed": false, "item": "/home/quicklab/automated_catalog/roles/tower/files/tower-setup/roles/packages_el/vars/../vars/RedHat-7.yml"}[0m
+
+TASK [packages_el : Make sure tower_package_version is set] ****************************************************
+[0;36mskipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}[0m
+
+TASK [packages_el : Install playbook dependencies] *************************************************************
