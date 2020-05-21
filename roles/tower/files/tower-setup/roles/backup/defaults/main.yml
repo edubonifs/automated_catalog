@@ -1,3 +1,0 @@
----
-backup_dir: /var/backups/tower/
-backup_dest: "{{ playbook_dir }}/"
