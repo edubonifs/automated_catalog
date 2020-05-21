@@ -13,7 +13,7 @@ def write_host(hostame):
   with open('inventory', 'w') as file:
     file.writelines( data )
 
-def write_host_tower(nodes,nodes_size):
+def write_host_tower(nodes,nodes_size,database,database_boolean):
   with open('tower.yml', 'r') as file:
     data = file.readlines()
     data[2] = "  hosts: all\n"
@@ -25,13 +25,36 @@ def write_host_tower(nodes,nodes_size):
     while i < nodes_size:
       data[i+1] = nodes[i] +"\n"
       i += 1
+    if database_boolean == "true":
+      data[i] = database + "\n"
   with open('inventory', 'w') as file:
+    file.writelines( data )
+
+def set_inventory_line():
+  with open('ansible.cfg', 'r') as file:
+    data = file.readlines()
+    data[1] = "inventory= roles/tower/files/tower-setup/inventory\n"
+  with open('ansible.cfg', 'w') as file:
+    file.writelines( data )
+
+def unset_inventory_line():
+  with open('ansible.cfg', 'r') as file:
+    data = file.readlines()
+    data[1] = "inventory=inventory\n"
+  with open('ansible.cfg', 'w') as file:
     file.writelines( data )
 
 def set_downloaded(downloaded):
   with open('roles/tower/vars/main.yml', 'r') as file:
     data = file.readlines()
     data[3] = "downloaded: "+ downloaded +"\n"
+  with open('roles/tower/vars/main.yml', 'w') as file:
+    file.writelines( data )
+
+def set_install(install):
+  with open('roles/tower/vars/main.yml', 'r') as file:
+    data = file.readlines()
+    data[4] = "install: "+ install +"\n"
   with open('roles/tower/vars/main.yml', 'w') as file:
     file.writelines( data )
 
@@ -57,13 +80,11 @@ def set_vars_tower(sub):
   with open('roles/tower/vars/main.yml', 'w') as file:
     file.writelines( data )
 
-#Set tower nodes' hostnames, database, passwords and ports
+#Set tower nodes, hostnames, database, passwords and ports
 def set_tower_vars(hosts_list, hosts_size,database,database_bool,admin_pass,pg_passwd):
   with open("roles/tower/files/tower-setup/inventory", "r") as in_file:
     buf = in_file.readlines()
     buf[1] = ""
-  #with open('inventory', 'w') as file:
-    #file.writelines( data )
   with open("roles/tower/files/tower-setup/inventory", "w") as out_file:
     i = 0
     for line in buf:
@@ -80,7 +101,7 @@ def set_tower_vars(hosts_list, hosts_size,database,database_bool,admin_pass,pg_p
           out_file.write("pg_host="+"'"+ database + "'"+"\n")
       if line == "pg_port=''\n":
         if database_bool == "true":
-          out_file.write("pg_host="+"'"+"5432"+"'"+"\n")
+          out_file.write("pg_port="+"'"+"5432"+"'"+"\n")
       if line == "pg_password=''\n":
         out_file.write("pg_password="+"'"+pg_passwd+"'"+"\n")
       out_file.write(line)
@@ -173,12 +194,6 @@ elif product == 2:
       node_fqdn = raw_input()
       nodes[i-1] = node_fqdn
       i += 1
-  downloaded = "false"
-  set_downloaded(downloaded)
-  os.system('ansible-playbook tower_download.yml')
-  downloaded = "true"
-  set_downloaded(downloaded)
-  write_host_tower(nodes,ask_nodes)
   ask_dat = input("Do you want a database?\n1-Yes\n2-No\n")
   if ask_dat == 1:
     database = raw_input("Enter the hostname of the database\n")
@@ -188,8 +203,22 @@ elif product == 2:
     database_bool = "false"
   admin_pass = raw_input("Enter the password of the admin\n")
   pg_passwd = raw_input("Enter postgres password\n")
+  downloaded = "false"
+  set_downloaded(downloaded)
+  os.system('ansible-playbook tower_download.yml')
+  downloaded = "true"
+  set_downloaded(downloaded)
+  write_host_tower(nodes,ask_nodes,database,database_bool)
   set_tower_vars(nodes,ask_nodes,database,database_bool,admin_pass,pg_passwd)
-  os.system('ansible-playbook tower.yml --ask-vault-pass')
+  install = "false"
+  set_install(install)
+  if ask_sub == "1":
+    os.system('ansible-playbook tower_subscribe.yml --ask-vault-pass')
+  install = "true"
+  set_install(install)
+  #set_inventory_line()
+  os.system('ansible-playbook tower.yml')
+  #unset_inventory_line()
 elif product == 3:
   print("You chosed OCP")
 else:

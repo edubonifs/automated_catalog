@@ -5,4 +5,4 @@
 - import_tasks: subscription.yml
   when: sub and downloaded
 - import_tasks: install_tower.yml
-  when: downloaded
+  when: install and downloaded

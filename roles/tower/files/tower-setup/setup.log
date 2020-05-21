@@ -1,0 +1,102 @@
+Using /home/quicklab/automated_catalog/roles/tower/files/tower-setup/ansible.cfg as config file
+[WARNING]: Could not match supplied host pattern, ignoring: instance_group_*
+[WARNING]: Could not match supplied host pattern, ignoring: isolated_group_*
+
+PLAY [tower:database:instance_group_*:isolated_group_*] ************************
+
+TASK [check_config_static : Ensure expected variables are defined] *************
+skipping: [node-7] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}
+skipping: [node-7] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}
+skipping: [node-7] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}
+skipping: [node-8] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}
+skipping: [node-9] => (item=tower_package_name)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_name", "skip_reason": "Conditional result was False"}
+skipping: [node-8] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}
+skipping: [node-8] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}
+skipping: [node-9] => (item=tower_package_version)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_version", "skip_reason": "Conditional result was False"}
+skipping: [node-9] => (item=tower_package_release)  => {"ansible_loop_var": "item", "changed": false, "item": "tower_package_release", "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Ensure cluster hosts are not localhost] ************
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Check that controller uses queue name and not group name] ***
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Check that group names do not conflict with instance names] ***
+skipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Detect unsupported HA inventory file] **************
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Ensure at least one tower host is defined] *********
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Check that no instance groups are named tower] *****
+skipping: [node-7] => (item=ungrouped)  => {"ansible_loop_var": "item", "changed": false, "item": "ungrouped", "skip_reason": "Conditional result was False"}
+skipping: [node-7] => (item=all)  => {"ansible_loop_var": "item", "changed": false, "item": "all", "skip_reason": "Conditional result was False"}
+skipping: [node-7] => (item=tower)  => {"ansible_loop_var": "item", "changed": false, "item": "tower", "skip_reason": "Conditional result was False"}
+skipping: [node-7] => (item=database)  => {"ansible_loop_var": "item", "changed": false, "item": "database", "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Ensure only one database host exists] **************
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Ensure when postgres host is defined that the port is defined] ***
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Ensure that when a database host is specified, that pg_host is defined] ***
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Ensure that when a database host is specified, that pg_port is defined] ***
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Ensure that pg_hashed_password is not set] *********
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Ensure that if we have web cert, we also have key] ***
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : Preflight check - verify certificates for Postgres SSL install] ***
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : HA mode requires an external postgres database with pg_host defined] ***
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [check_config_static : HA mode requires an external postgres database with pg_port defined] ***
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [config_dynamic : Set database to internal or external] *******************
+ok: [node-8] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}
+ok: [node-7] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}
+ok: [node-9] => {"ansible_facts": {"config_dynamic_database": "external"}, "changed": false}
+
+TASK [config_dynamic : Database decision] **************************************
+ok: [node-7] => {
+    "config_dynamic_database": "external"
+}
+ok: [node-8] => {
+    "config_dynamic_database": "external"
+}
+ok: [node-9] => {
+    "config_dynamic_database": "external"
+}
+
+TASK [config_dynamic : Set postgres host and port to local if not set] *********
+skipping: [node-7] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [node-8] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [node-9] => {"changed": false, "skip_reason": "Conditional result was False"}
+
+TASK [config_dynamic : Ensure connectivity to hosts and gather facts] **********
+fatal: [node-8]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
+fatal: [node-9]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
+fatal: [node-7]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+node-7                     : ok=2    changed=0    unreachable=1    failed=0    skipped=17   rescued=0    ignored=0   
+node-8                     : ok=2    changed=0    unreachable=1    failed=0    skipped=5    rescued=0    ignored=0   
+node-9                     : ok=2    changed=0    unreachable=1    failed=0    skipped=5    rescued=0    ignored=0   
+
