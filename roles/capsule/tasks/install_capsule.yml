@@ -1,7 +1,9 @@
+---
 - name: install firewalld
   package:
     name: firewalld
     state: present
+  delegate_to: "{{ capsule }}"
 
 - name: open firewall ports
   firewalld:
@@ -9,11 +11,14 @@
     permanent: yes
     state: enabled
   loop: "{{ ports }}"
+  delegate_to: "{{ capsule }}"
 
 - name: reloading firewalld service
   systemd:
     name: firewalld
-    state: reloaded 
+    state: reloaded
+  delegate_to: "{{ capsule }}"
+
 #This task in not necessary in a newly used cluster   
    #- name: clean metadata
    #  command: yum clean all 
@@ -29,31 +34,45 @@
     name: "{{ item }}"
     state: present
   loop: "{{ packages }}"
+  delegate_to: "{{ capsule }}"
    
 - name: enable and start chronyd
   service:
     name: chronyd
     state: started
     enabled: yes
+  delegate_to: "{{ capsule }}"
      
 - name: create directory for storing certificates
   file:
     path: /root/capsule_cert
     state: directory
-  delegate_to:
+  delegate_to: "{{ satellite }}"
 
 - name: copy script to satellite
   copy:
     src: generate_certs.sh
     dest: generate_certs.sh
     mode: 0755
-  delegate_to:
+  delegate_to: "{{ satellite }}"
         
 - name: execute script for generating certificates of the capsule
   script: generate_certs.sh
-  delegate_to: "{{ satellite_fqdn }}"
+  delegate_to: "{{ satellite }}"
 
-- name:
+- name: bring certs to localhost
+  copy:
+    src:
+    dest:
+  
+
+- name: copy certs to capsule
+  copy:
+    src:
+    dest:
+
+- name: run capsule installer cmd
+  command: "{{ capsule_cmd }}"
 
 #    - name: download satellite ca-consumer
 #      get_url:

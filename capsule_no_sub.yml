@@ -1,0 +1,5 @@
+---
+- name: Capsule installer
+  hosts: capsule
+  roles:
+    - capsule

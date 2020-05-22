@@ -1,24 +1,43 @@
 import os
 
+
 #Define host name in which the installation will be done
 def write_host(hostame):
+  #Open and write the host to satellite.yml playbook
   with open('satellite.yml', 'r') as file:
     data = file.readlines()
     data[2] = "  hosts: " + hostname +"\n"
   with open('satellite.yml', 'w') as file:
     file.writelines( data )
+  #Open and write the host in the inventory file
   with open('inventory', 'r') as file:
     data = file.readlines()
     data[1] = "" + hostname +"\n"
   with open('inventory', 'w') as file:
     file.writelines( data )
 
+
+#Define host name in which the installation will be done
+def write_host_capsule(hostame,satellite,sub):
+  #Open and write the host in the inventory file
+  with open('inventory', 'r') as file:
+    data = file.readlines()
+    data[0] = "[capsule]\n"
+    data[1] = "" + hostname +"\n"
+    data[2] = "" + satellite +"\n"
+  with open('inventory', 'w') as file:
+    file.writelines( data )
+
+
+#Function to write the hostname in different files for Tower installation
 def write_host_tower(nodes,nodes_size,database,database_boolean):
+  #Open and write the host to capsule.yml playbook
   with open('tower.yml', 'r') as file:
     data = file.readlines()
     data[2] = "  hosts: all\n"
   with open('tower.yml', 'w') as file:
     file.writelines( data )
+  #Open and write the host in the inventory file
   with open('inventory', 'r') as file:
     data = file.readlines()
     i = 0
@@ -30,20 +49,8 @@ def write_host_tower(nodes,nodes_size,database,database_boolean):
   with open('inventory', 'w') as file:
     file.writelines( data )
 
-def set_inventory_line():
-  with open('ansible.cfg', 'r') as file:
-    data = file.readlines()
-    data[1] = "inventory= roles/tower/files/tower-setup/inventory\n"
-  with open('ansible.cfg', 'w') as file:
-    file.writelines( data )
 
-def unset_inventory_line():
-  with open('ansible.cfg', 'r') as file:
-    data = file.readlines()
-    data[1] = "inventory=inventory\n"
-  with open('ansible.cfg', 'w') as file:
-    file.writelines( data )
-
+#Function for telling tower that the setup bundle has been downloaded
 def set_downloaded(downloaded):
   with open('roles/tower/vars/main.yml', 'r') as file:
     data = file.readlines()
@@ -51,12 +58,15 @@ def set_downloaded(downloaded):
   with open('roles/tower/vars/main.yml', 'w') as file:
     file.writelines( data )
 
+
+#Function for telling tower that he can proceed with the installation
 def set_install(install):
   with open('roles/tower/vars/main.yml', 'r') as file:
     data = file.readlines()
     data[4] = "install: "+ install +"\n"
   with open('roles/tower/vars/main.yml', 'w') as file:
     file.writelines( data )
+
 
 #Write Version of satellite, whether you want to make partitions or not, if you want to subscribe your nodes, organization, location, admin username and password
 def set_vars(version,parted,sub,name,passwd,org,loc,enable_repos):
@@ -69,16 +79,34 @@ def set_vars(version,parted,sub,name,passwd,org,loc,enable_repos):
     data[5] = "passwd: " + passwd + "\n"
     data[6] = "organization: " + org + "\n"
     data[7] = "location: " + loc + "\n"
-    data[8] = "enable_repos: " + enable_repos +"\n"
+    data[8] = "enable_repos: " + enable_repos + "\n"
   with open('roles/satellite/vars/main.yml', 'w') as file:
     file.writelines( data )
 
+
+#Write admin user of satellite, admin_passwd, satellite hostname, if using load balancer or nor, the version of the capsule and wether you want to subscribe the node
+def set_vars_capsule(admin,admin_passwd,satellite,lb,version,sub,enable_repos):
+  with open('roles/capsule/vars/main.yml', 'r') as file:
+    data = file.readlines()
+    data[2] = "admin: " + admin +"\n"
+    data[3] = "admin_passwd: " + admin_passwd +"\n"
+    data[4] = "satellite: " + satellite + "\n"
+    data[5] = "sub: " + sub + "\n"
+    data[6] = "version: " + version + "\n"
+    data[7] = "loadbalancer: " + lb + "\n"
+    data[8] = "enable_repos: " + enable_repos + "\n"
+  with open('roles/capsule/vars/main.yml', 'w') as file:
+    file.writelines( data )
+
+
+#Function for asking wether you want to subscribe your node
 def set_vars_tower(sub):
   with open('roles/tower/vars/main.yml', 'r') as file:
     data = file.readlines()
     data[2] = "sub: " + sub +"\n"
   with open('roles/tower/vars/main.yml', 'w') as file:
     file.writelines( data )
+
 
 #Set tower nodes, hostnames, database, passwords and ports
 def set_tower_vars(hosts_list, hosts_size,database,database_bool,admin_pass,pg_passwd):
@@ -119,6 +147,8 @@ def set_tower_vars(hosts_list, hosts_size,database,database_bool,admin_pass,pg_p
   with open("roles/tower/files/tower-setup/inventory", 'w') as file:
     file.writelines( data )
 
+
+#We start with the program
 product = input("Which product would you like to choose?\n1-Satellite\n2-Tower\n3-OCP\n4-IDM\n")
 if product == 1:
   print("You chosed Satellite")
@@ -132,7 +162,7 @@ if product == 1:
       version = "6.6"
     else:
       version = "6.7"
-    ask_parted = raw_input("Do you want to make partitions for /dev/vdb and /dev/vdc?\n(Recommended for quicklab installations)\n1-Yes\n2-No\n")
+    ask_parted = raw_input("Do you want to make partitions for /dev/vdb and /dev/vdc for having a 20GB SWAP?\n(Recommended for quicklab installations)\n1-Yes\n2-No\n")
     if ask_parted == "1":
       parted = "true"
     else:
@@ -142,11 +172,14 @@ if product == 1:
       sub = "true"
     else:
       sub = "false"
-    ask_enabled= raw_input("Do you want to enable the repos?\n1-Yes\n2-No\n")
-    if ask_enabled == "1":
-      enable_repos = "true"
+    if sub == "false":
+      ask_enabled= raw_input("Do you want to enable the repos?\n1-Yes\n2-No\n")
+      if ask_enabled == "1":
+        enable_repos = "true"
+      else:
+        enable_repos = "false"
     else:
-      enable_repos = "false"
+      enable_repos = "true"
     name = raw_input("Enter the admin username\n")
     passwd = raw_input("Enter the password of the admin\n")
     org = raw_input("Enter Organization name\n")
@@ -155,13 +188,62 @@ if product == 1:
     os.system('ansible-playbook satellite.yml --ask-vault-pass')
   elif action == 2:
     print("You chosed Capsule Installation")
+    #Ask for the capsule hostname
     hostname = raw_input("Enter the hostname of the Capsule\n")
-    write_host(hostname)
+
+    #Ask for the version of the capsule to install
     ask_version = raw_input("Enter the version of Capsule you would like to install\n1-6.6\n2-6.7\n")
     if ask_version == "1":
       version = "6.6"
     else:
       version = "6.7"
+
+    #Ask wether you want to subscribe the nodes or not
+    ask_sub = raw_input("Do you want to subscribe the node?\n1-Yes\n2-No\n")
+    if ask_sub == "1":
+      sub = "true"
+    else:
+      sub = "false"
+
+    #Ask wether you want to enable the repos or not
+    if sub == "false":
+      ask_enabled= raw_input("Do you want to enable the repos?\n1-Yes\n2-No\n")
+      if ask_enabled == "1":
+        enable_repos = "true"
+      else:
+        enable_repos = "false"
+    else:
+      enable_repos = "true"
+    
+    #Ask wether you want to subscribe the nodes or not
+    ask_lb = input("Do you want the Capsule with load balancer?\n1-Yes\n2-No\n")
+    if ask_lb == 1:
+      lb = "true"
+    else:
+      lb = "false"
+
+    #Ask for the satellite hostname
+    satellite = raw_input("Please enter Satellite hostname\n")
+
+    #Ask for the Satellite username
+    admin = raw_input("Please enter your satellite username\n")
+
+    #Ask for the password of the user
+    admin_passwd = raw_input("Please enter your password\n")
+
+    #Call the function for writing the variables in the capsule role    
+    set_vars_capsule(admin,admin_passwd,satellite,lb,version,sub,enable_repos)
+
+    #Run capsule role
+    if sub:
+      #Write hostname on capsule.yml and inventory
+      write_host_capsule(hostname,satellite,sub) 
+      os.system('ansible-playbook capsule.yml --ask-vault-pass')
+    else:
+      #Write hostname on capsule_no_sub.yml and inventory
+      write_host_capsule(hostame,satellite,sub)
+      os.system('ansible-playbook capsule_no_sub.yml')
+
   elif action == 3:
     print("You chosed Satellite Upgrade")
   else:
@@ -216,10 +298,8 @@ elif product == 2:
     os.system('ansible-playbook tower_subscribe.yml --ask-vault-pass')
   install = "true"
   set_install(install)
-  #set_inventory_line()
   os.system('ansible-playbook tower.yml')
-  os.system('sudo ./roles/tower/files/tower-setup/setup.sh')
-  #unset_inventory_line()
+  os.system('./roles/tower/files/tower-setup/setup.sh')
 elif product == 3:
   print("You chosed OCP")
 else:

@@ -1,7 +1,13 @@
 ---
 # vars file for capsule
-loadbalancer:
-
+admin: admin_user_name
+admin_passwd: admin_password
+satellite: node-3
+sub: false
+version: 6.7
+loadbalancer: false
+enable_repos: false
+capsule_certs: /root/capsule_cert
 
 repos67:
   - rhel-7-server-rpms

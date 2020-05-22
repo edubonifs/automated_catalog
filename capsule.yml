@@ -1,0 +1,7 @@
+---
+- name: Capsule installer
+  hosts: capsule
+  vars_files:
+    - roles/capsule/vars/sec.yml
+  roles:
+    - capsule
