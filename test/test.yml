@@ -1,11 +1,19 @@
 ---
 - name: h
   hosts: auto
+  vars:
+    node2: node-2
+    node3: node-3
   gather_facts: no
   tasks:
   - name: g
-    copy:
+    fetch:
       src: hola.txt
+      dest: .
+    ignore_errors: yes
+
+  - name: copy
+    copy:
+      src: "{{ node3 }}/hola.txt"
       dest: hola.txt
-      
-    delegate_to: node-3
+    ignore_errors: yes

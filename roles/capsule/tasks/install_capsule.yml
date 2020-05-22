@@ -47,7 +47,6 @@
   file:
     path: /root/capsule_cert
     state: directory
-  delegate_to: "{{ satellite }}"
 
 - name: copy script to satellite
   copy:
@@ -60,19 +59,20 @@
   script: generate_certs.sh
   delegate_to: "{{ satellite }}"
 
-- name: bring certs to localhost
-  copy:
-    src:
-    dest:
-  
+- name: bring nodes to localhost
+  fetch:
+    src: /root/capsule_cert/* 
+    dest: .
+  ignore_errors: yes
 
-- name: copy certs to capsule
+- name: send nodes to capsule
   copy:
-    src:
-    dest:
+    src: "{{ satellite }}/*"
+    dest: /root/capsule_cert
 
 - name: run capsule installer cmd
   command: "{{ capsule_cmd }}"
+  delegate_to: "{{ capsule }}"
 
 #    - name: download satellite ca-consumer
 #      get_url:

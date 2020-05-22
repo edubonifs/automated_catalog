@@ -3,15 +3,18 @@
   rhsm_repository:
     name: "*"
     state: disabled
+  delegate_to: "{{ capsule }}"
 
 - name: Enable necessary repos capsule 6.7
   rhsm_repository:
     name: "{{ item }}"
   loop: "{{ repos67 }}"
   when: version == 6.7
+  delegate_to: "{{ capsule }}"
 
 - name: Enable neccesary repos capsule 6.6
   rhsm_repository:
     name: "{{ item }}"
   loop: "{{ repos66 }}"
   when: version == 6.6
+  delegate_to: "{{ capsule }}"
