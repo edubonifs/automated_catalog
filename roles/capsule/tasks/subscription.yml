@@ -6,3 +6,4 @@
     password: "{{ pass }}"
     pool_ids: 8a85f9996f0fa058016f7de6ac642eba 
     force_register: yes
+  when: capsule == ansible_hostname

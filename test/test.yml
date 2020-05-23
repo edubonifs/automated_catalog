@@ -4,13 +4,24 @@
   vars:
     node2: node-2
     node3: node-3
-  gather_facts: no
   tasks:
+#  - name: g
+ #   fetch:
+  #    src: hola.txt
+   #   dest: .
+    #ignore_errors: yes
+    #when: "node-2" == hostvars['hostname']
+
   - name: g
     fetch:
       src: hola.txt
       dest: .
     ignore_errors: yes
+    when: node2 == ansible_hostname
+
+  - name: var
+    debug:
+      var: hostvars['hostname']
 
   - name: copy
     copy:

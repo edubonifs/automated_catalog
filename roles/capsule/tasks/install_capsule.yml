@@ -3,7 +3,7 @@
   package:
     name: firewalld
     state: present
-  delegate_to: "{{ capsule }}"
+  when: capsule == ansible_hostname
 
 - name: open firewall ports
   firewalld:
@@ -11,13 +11,13 @@
     permanent: yes
     state: enabled
   loop: "{{ ports }}"
-  delegate_to: "{{ capsule }}"
+  when: capsule == ansible_hostname
 
 - name: reloading firewalld service
   systemd:
     name: firewalld
     state: reloaded
-  delegate_to: "{{ capsule }}"
+  when: capsule == ansible_hostname
 
 #This task in not necessary in a newly used cluster   
    #- name: clean metadata
@@ -34,14 +34,14 @@
     name: "{{ item }}"
     state: present
   loop: "{{ packages }}"
-  delegate_to: "{{ capsule }}"
+  when: capsule == ansible_hostname
    
 - name: enable and start chronyd
   service:
     name: chronyd
     state: started
     enabled: yes
-  delegate_to: "{{ capsule }}"
+  when: capsule == ansible_hostname
      
 - name: create directory for storing certificates
   file:
@@ -53,26 +53,27 @@
     src: generate_certs.sh
     dest: generate_certs.sh
     mode: 0755
-  delegate_to: "{{ satellite }}"
+  when: satellite == ansible_hostname
         
 - name: execute script for generating certificates of the capsule
   script: generate_certs.sh
-  delegate_to: "{{ satellite }}"
+  when: satellite == ansible_hostname
 
-- name: bring nodes to localhost
+- name: bring certs to localhost
   fetch:
     src: /root/capsule_cert/* 
     dest: .
-  ignore_errors: yes
+  when: satellite == ansible_hostname
 
 - name: send nodes to capsule
   copy:
     src: "{{ satellite }}/*"
     dest: /root/capsule_cert
+  when: capsule == ansible_hostname
 
 - name: run capsule installer cmd
   command: "{{ capsule_cmd }}"
-  delegate_to: "{{ capsule }}"
+  when: capsule == ansible_hostname
 
 #    - name: download satellite ca-consumer
 #      get_url:
