@@ -61,13 +61,13 @@
 
 - name: bring certs to localhost
   fetch:
-    src: /root/capsule_cert/* 
+    src: /root/capsule_cert/capsule_certs.tar 
     dest: .
   when: satellite == ansible_hostname
 
 - name: send nodes to capsule
   copy:
-    src: "{{ satellite }}/*"
+    src: "{{ satellite }}/capsule_certs.tar"
     dest: /root/capsule_cert
   when: capsule == ansible_hostname
 
