@@ -67,7 +67,7 @@
 
 - name: send nodes to capsule
   copy:
-    src: "{{ satellite }}/capsule_certs.tar"
+    src: "{{ satellite }}/root/capsule_cert/capsule_certs.tar"
     dest: /root/capsule_cert
   when: capsule == ansible_hostname
 

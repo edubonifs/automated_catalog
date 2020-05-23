@@ -6,9 +6,10 @@ satellite: node-3
 sub: false
 version: 6.7
 loadbalancer: false
-enable_repos: true
+enable_repos: false
 capsule: node-2
-capsule_certs: /root/capsule_cert
+capsule_certs: /root/capsule_cert/
+capsule_certs_file: /root/capsule_cert/capsule_certs.tar
 
 repos67:
   - rhel-7-server-rpms
