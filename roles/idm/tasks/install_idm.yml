@@ -1,0 +1,52 @@
+---
+- name: install firewalld
+  package:
+    name: firewalld
+    state: present
+
+- name: open firewall ports
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop: "{{ services }}"
+
+- name: open firewall ports
+  firewalld:
+    ports: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop: "{{ ports }}"
+
+- name: reloading firewalld service
+  systemd:
+    name: firewalld
+    state: reloaded 
+
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+  when: dns
+
+- name: install packages
+  package:
+    name: ipa-server
+    state: present
+  when: not dns   
+
+- name: line
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ ansible_all_ipv4_addresses | first }} {{ ansible_fqdn }} {{ ansible_hostname }}"
+
+- name: execute idm-installer command
+  command: ipa-server-install 
+  when: not unattended
+
+- name: execute idm-installer command
+  command: ipa-server-install {{ reverse_flag }} {{ dns_flag }} {{ forward_flag }} -p {{ dm_passwd }} -a {{ ipa_passwd }} -r {{ realm }} --hostname {{ hostname }} --unattended
+  when: unattended
+
+

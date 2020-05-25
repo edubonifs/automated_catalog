@@ -122,7 +122,7 @@ def set_vars_tower(sub):
     file.writelines( data )
 
 #Function for asking wether you want to subscribe your node
-def set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp):
+def set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp,forward,unattended):
   with open('roles/idm/vars/main.yml', 'r') as file:
     data = file.readlines()
     data[1] = "sub: " + sub +"\n"
@@ -133,6 +133,8 @@ def set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp):
     data[6] = "dm_passwd: " + dm_passwd +"\n"
     data[7] = "ipa_passwd: " + ipa_passwd +"\n"
     data[8] = "ntp: " + ntp +"\n"
+    data[9] = "forward: " + forward +"\n"
+    data[10] = "unattended: " + unattended +"\n"
   with open('roles/idm/vars/main.yml', 'w') as file:
     file.writelines( data )
 
@@ -371,6 +373,25 @@ else:
     ntp = "true"
   else:
     ntp = "false"
-  set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp)
+  
+  #Do you want to enable auto forwarders?
+  ask_forward = raw_input("Do you want to enable auto forwarders??\n1-Yes\n2-No\n")
+  if ask_forward == "1":
+    forward = "true"
+  else:
+    forward = "false"
 
+  #Do you want to have an unattended installation?
+  ask_unattended = raw_input("Do you want to have an unattended installation?\n1-Yes\n2-No\n")
+  if ask_unattended == "1":
+    unattended = "true"
+  else:
+    unattended = "false"
+  
+  set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp,forward,unattended)
+
+  if sub == "true":
+    os.system('ansible-playbook idm.yml')
+  else:
+    os.system('ansible-playbook idm_no_sub.yml --ask-vault-pass')
 

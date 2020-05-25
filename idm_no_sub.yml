@@ -1,0 +1,5 @@
+---
+- name: IDM installer
+  hosts: node-2
+  roles:
+    - idm

@@ -1,0 +1,30 @@
+---
+- name: reverse fact when reverse
+  set_fact:
+    reverse_flag: --auto-reverse
+  when: reverse 
+
+- name: reverse fact when no reverse
+  set_fact:
+    reverse_flag: --no-reverse
+  when: not reverse
+
+- name: dns fact when dns
+  set_fact:
+    dns_flag: --setup-dns
+  when: dns
+
+- name: dns fact when not dns
+  set_fact:
+    dns_flag: --no-host-dns
+  when: not dns
+
+- name: forwarders fact when forwarders
+  set_fact:
+    forward_flag: --auto-forwarders
+  when: forward
+
+- name: forwarders fact when not forwarders
+  set_fact:
+    forward_flag: --no-forwarders
+  when: forward
