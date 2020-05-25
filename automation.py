@@ -16,6 +16,18 @@ def write_host(hostame):
   with open('inventory', 'w') as file:
     file.writelines( data )
 
+#Define hostname in which IDM will be installed
+  with open('idm.yml', 'r') as file:
+    data = file.readlines()
+    data[2] = "  hosts: " + hostname +"\n"
+  with open('idm.yml', 'w') as file:
+    file.writelines( data )
+  #Open and write the host in the inventory file
+  with open('inventory', 'r') as file:
+    data = file.readlines()
+    data[1] = "" + hostname +"\n"
+  with open('inventory', 'w') as file:
+    file.writelines( data )
 
 #Define host name in which the installation will be done
 def write_host_capsule(hostame,satellite,sub):
@@ -108,6 +120,20 @@ def set_vars_tower(sub):
   with open('roles/tower/vars/main.yml', 'w') as file:
     file.writelines( data )
 
+#Function for asking wether you want to subscribe your node
+def set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp):
+  with open('roles/idm/vars/main.yml', 'r') as file:
+    data = file.readlines()
+    data[1] = "sub: " + sub +"\n"
+    data[2] = "dns: " + dns +"\n"
+    data[3] = "reverse: " + reverse +"\n"
+    data[4] = "domain: " + domain +"\n"
+    data[5] = "realm: " + realm +"\n"
+    data[6] = "dm_passwd: " + dm_passwd +"\n"
+    data[7] = "ipa_passwd: " + ipa_passwd +"\n"
+    data[8] = "ntp: " + ntp +"\n"
+  with open('roles/idm/vars/main.yml', 'w') as file:
+    file.writelines( data )
 
 #Set tower nodes, hostnames, database, passwords and ports
 def set_tower_vars(hosts_list, hosts_size,database,database_bool,admin_pass,pg_passwd):
@@ -305,3 +331,42 @@ elif product == 3:
   print("You chosed OCP")
 else:
   print("You chosed IDM")
+  
+  #Ask for the node in which IDM will be installed
+  hostname = raw_input("Enter the hostname of the IDM\n")
+  write_host_idm(hostname)
+
+  #Ask wether you want to subscribe the node or not
+  ask_sub = raw_input("Do you want to subscribe the node?\n1-Yes\n2-No\n")
+  if ask_sub == "1":
+    sub = "true"
+  else:
+    sub = "false"
+
+  #Ask wether you want integrated DNS in your IDM
+  dns = raw_input("Do you want to have integrated DNS in your IDM?\n1-Yes\n2-No\n") 
+ 
+  #Ask wether you want auto reverse zone detection
+  reverse = raw_input("Do you want to have reverse zone auto detection)\n1-Yes\n2-No\n")
+
+  #Enter domain name
+  domain = raw_input("Please enter the domain name")
+
+  #Enter realm name
+  realm = raw_input("Please enter the realm name")
+
+  #Please enter the Directory Manager password
+  dm_passwd = raw_input("Please enter the Directory Manager Password")
+  
+  #Please enter the IPA admin password
+  ipa_passwd = raw_input("Please enter IPA admin password")
+
+  #Do you want to enable ntp configuration?
+  ask_ntp = raw_input("Do you want to enable ntp?\n1-Yes\n2-No\n")
+  if ask_ntp == "1":
+    ntp = "true"
+  else:
+    ntp = "false"
+  set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp)
+
+

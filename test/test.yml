@@ -5,26 +5,15 @@
     node2: node-2
     node3: node-3
   tasks:
+
 #  - name: g
  #   fetch:
   #    src: hola.txt
    #   dest: .
     #ignore_errors: yes
-    #when: "node-2" == hostvars['hostname']
+    #when: node2 == ansible_hostname
 
-  - name: g
-    fetch:
-      src: hola.txt
-      dest: .
-    ignore_errors: yes
-    when: node2 == ansible_hostname
-
-  - name: var
-    debug:
-      var: hostvars['hostname']
-
-  - name: copy
-    copy:
-      src: "{{ node3 }}/hola.txt"
-      dest: hola.txt
-    ignore_errors: yes
+  - name: line
+    lineinfile:
+      path: /etc/hosts
+      line: "{{ ansible_all_ipv4_addresses | first }} {{ ansible_fqdn }} {{ ansible_hostname }}"

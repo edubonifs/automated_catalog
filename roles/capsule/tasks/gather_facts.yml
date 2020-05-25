@@ -5,7 +5,7 @@
 - name: Get settings list of the satellite
   command: "hammer --username='{{ admin }}' --password='{{ admin_passwd }}' --output='json' settings list"
   register: satellite_settings_output
-  delegate_to: "{{ satellite }}"
+  when: satellite == ansible_hostname
 
 - name: Set facts for the satellite settings output
   set_fact:

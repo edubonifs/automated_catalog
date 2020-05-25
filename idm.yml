@@ -1,0 +1,7 @@
+---
+- name: IDM installer
+  hosts: node-2
+  vars_files:
+    - roles/idm/vars/sec.yml
+  roles:
+    - idm

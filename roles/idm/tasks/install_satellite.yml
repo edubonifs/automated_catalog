@@ -6,10 +6,10 @@
 
 - name: open firewall ports
   firewalld:
-    port: "{{ item }}"
+    service: "{{ item }}"
     permanent: yes
     state: enabled
-  loop: "{{ ports }}"
+  loop: "{{ services }}"
 
 - name: reloading firewalld service
   systemd:
@@ -31,11 +31,10 @@
     state: present
   loop: "{{ packages }}"
    
-- name: enable and start chronyd
-  service:
-    name: chronyd
-    state: started
-    enabled: yes
+- name: line
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ ansible_all_ipv4_addresses | first }} {{ ansible_fqdn }} {{ ansible_hostname }}"
 
 - name: execute satellite-installer command
   command: "{{ satellite_cmd }}" 
