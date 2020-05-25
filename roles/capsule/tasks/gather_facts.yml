@@ -5,7 +5,13 @@
 - name: Get settings list of the satellite
   command: "hammer --username='{{ admin }}' --password='{{ admin_passwd }}' --output='json' settings list"
   register: satellite_settings_output
-  when: satellite == ansible_hostname
+  delegate_to: "{{ satellite }}"
+  run_once: true
+
+- name: install json package
+  package:
+    name: python-jmespath 
+    state: present
 
 - name: Set facts for the satellite settings output
   set_fact:
