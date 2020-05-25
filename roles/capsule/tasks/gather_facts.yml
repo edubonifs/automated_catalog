@@ -8,11 +8,6 @@
   delegate_to: "{{ satellite }}"
   run_once: true
 
-- name: install json package
-  package:
-    name: python-jmespath 
-    state: present
-
 - name: Set facts for the satellite settings output
   set_fact:
     satellite_settings: "{{ satellite_settings_output.stdout | from_json }}"
@@ -28,14 +23,14 @@
 - name: set capsule install vars
   set_fact:
     capsule_deployment_answers:
-      "certs-tar-file": "{{ capsule_certs_file }}"
-      "foreman-proxy-content-parent-fqdn": "{{ satellite }}"
-      "foreman-proxy-register-in-foreman": 'true'
       "foreman-proxy-foreman-base-url": "https://{{ satellite }}"
       "foreman-proxy-trusted-hosts": "{{ ansible_fqdn }}"
+      "foreman-proxy-content-parent-fqdn": "{{ satellite }}"
+      "foreman-proxy-register-in-foreman": 'true'
       "foreman-proxy-oauth-consumer-key": "{{ satellite_oauth_consumer_key }}"
       "foreman-proxy-oauth-consumer-secret": "{{ satellite_oauth_consumer_secret }}"
       "puppet-server-foreman-url": "https://{{ ansible_fqdn }}"
+      "certs-tar-file": "{{ capsule_certs_file }}"
     when: not loadbalancer
 
 - name: Get final command of satellite installer

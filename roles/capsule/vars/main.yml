@@ -1,13 +1,13 @@
 ---
 # vars file for capsule
-admin: admin_user_name
-admin_passwd: admin_password
-satellite: node-3
+admin: admin
+admin_passwd: UdBmgBqD6Qmy89iL
+satellite: node-2
 sub: false
-version: 6.7
+version: 6.6
 loadbalancer: false
 enable_repos: false
-capsule: node-2
+capsule: node-1
 capsule_certs: /root/capsule_cert/
 capsule_certs_file: /root/capsule_cert/capsule_certs.tar
 
