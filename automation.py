@@ -97,7 +97,7 @@ def set_vars(version,parted,sub,name,passwd,org,loc,enable_repos):
 
 
 #Write admin user of satellite, admin_passwd, satellite hostname, if using load balancer or nor, the version of the capsule and wether you want to subscribe the node
-def set_vars_capsule(admin,admin_passwd,satellite,lb,version,sub,enable_repos,hostname):
+def set_vars_capsule(admin,admin_passwd,satellite,lb,version,sub,enable_repos,hostname,sat_fqdn):
   with open('roles/capsule/vars/main.yml', 'r') as file:
     data = file.readlines()
     data[2] = "admin: " + admin +"\n"
@@ -108,6 +108,7 @@ def set_vars_capsule(admin,admin_passwd,satellite,lb,version,sub,enable_repos,ho
     data[7] = "loadbalancer: " + lb + "\n"
     data[8] = "enable_repos: " + enable_repos + "\n"
     data[9] = "capsule: " + hostname + "\n"
+    data[10] = "satellite_fqdn: " + sat_fqdn + "\n"
   with open('roles/capsule/vars/main.yml', 'w') as file:
     file.writelines( data )
 
@@ -258,8 +259,11 @@ if product == 1:
     #Ask for the password of the user
     admin_passwd = raw_input("Please enter your password\n")
 
+    #Ask for the Satellite fqdn
+    sat_fqdn = raw_input("Please enter satellite fqdn\n")
+
     #Call the function for writing the variables in the capsule role    
-    set_vars_capsule(admin,admin_passwd,satellite,lb,version,sub,enable_repos,hostname)
+    set_vars_capsule(admin,admin_passwd,satellite,lb,version,sub,enable_repos,hostname,sat_fqdn)
 
     #Run capsule role
     if sub:

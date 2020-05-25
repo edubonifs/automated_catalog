@@ -2,6 +2,22 @@
   set_fact:
     capsule_basic_cmd: "/usr/sbin/satellite-installer --scenario capsule"
 
+- name: get capsule fqdn
+  set_fact:
+    capsule_fqdn: "{{ ansible_fqdn }}"
+  delegate_to: "{{ capsule }}"
+  run_once: true
+
+- name: facts for generate-certs
+  set_fact:
+    generate_basic_cmd: "capsule-certs-generate"
+    generate_proxy: "--foreman-proxy-fqdn {{ capsule_fqdn }}"
+    generate_certs: "--certs-tar {{ capsule_certs_file }}"
+
+- name: Get final command of capsule installer
+  set_fact:
+    certs_cmd: "{{ generate_basic_cmd }} {{ generate_proxy }} {{ generate_certs }} --certs-update-all"
+
 - name: Get settings list of the satellite
   command: "hammer --username='{{ admin }}' --password='{{ admin_passwd }}' --output='json' settings list"
   register: satellite_settings_output
@@ -23,18 +39,22 @@
 - name: set capsule install vars
   set_fact:
     capsule_deployment_answers:
-      "foreman-proxy-foreman-base-url": "https://{{ satellite }}"
-      "foreman-proxy-trusted-hosts": "{{ ansible_fqdn }}"
-      "foreman-proxy-content-parent-fqdn": "{{ satellite }}"
+      "certs-tar-file": "{{ capsule_certs_file }}"
+      "foreman-proxy-content-parent-fqdn": "{{ satellite_fqdn }}"
       "foreman-proxy-register-in-foreman": 'true'
+      "foreman-proxy-foreman-base-url": "https://{{ satellite_fqdn }}"
+      "foreman-proxy-trusted-hosts": "{{ ansible_fqdn }}"
+      #"foreman-proxy-trusted-hosts": "{{ capsule_fqdn }}"
       "foreman-proxy-oauth-consumer-key": "{{ satellite_oauth_consumer_key }}"
       "foreman-proxy-oauth-consumer-secret": "{{ satellite_oauth_consumer_secret }}"
-      "puppet-server-foreman-url": "https://{{ ansible_fqdn }}"
-      "certs-tar-file": "{{ capsule_certs_file }}"
+      "puppet-server-foreman-url": "https://{{ satellite_fqdn }}"
     when: not loadbalancer
 
-- name: Get final command of satellite installer
+#- name: Get final command of satellite installer
+ # set_fact:
+  #  capsule_cmd: "{{ capsule_basic_cmd }} --{{ item.key }}='{{ item.value }}'"
+  #loop: "{{ capsule_deployment_answers | dict2items }}"
+- name: install
   set_fact:
-    capsule_cmd: "{{ capsule_basic_cmd }} --{{ item.key }}='{{ item.value }}'"
-  loop: "{{ capsule_deployment_answers | dict2items }}"
+    capsule_cmd: "{{ capsule_basic_cmd }} --certs-tar-file {{ capsule_certs_file }} --foreman-proxy-content-parent-fqdn {{ satellite_fqdn }} --foreman-proxy-register-in-foreman 'true' --foreman-proxy-foreman-base-url https://{{ satellite_fqdn }} --foreman-proxy-trusted-hosts {{ capsule_fqdn }} --foreman-proxy-trusted-hosts {{ satellite_fqdn }} --foreman-proxy-oauth-consumer-key {{ satellite_oauth_consumer_key }} --foreman-proxy-oauth-consumer-secret {{ satellite_oauth_consumer_secret }} --puppet-server-foreman-url https://{{ satellite_fqdn }}"
 

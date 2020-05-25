@@ -8,6 +8,7 @@ version: 6.6
 loadbalancer: false
 enable_repos: false
 capsule: node-1
+satellite_fqdn: node-2.edutest.lab.rdu2.cee.redhat.com
 capsule_certs: /root/capsule_cert/
 capsule_certs_file: /root/capsule_cert/capsule_certs.tar
 

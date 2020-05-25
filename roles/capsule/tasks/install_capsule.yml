@@ -48,16 +48,20 @@
     path: /root/capsule_cert
     state: directory
 
-- name: copy script to satellite
-  copy:
-    src: generate_certs.sh
-    dest: generate_certs.sh
-    mode: 0755
+- name: execute generate certs command in satellite
+  command: " {{ certs_cmd }} "
   when: satellite == ansible_hostname
+
+#- name: copy script to satellite
+#  copy:
+#    src: generate_certs.sh
+#    dest: generate_certs.sh
+#    mode: 0755
+#  when: satellite == ansible_hostname
         
-- name: execute script for generating certificates of the capsule
-  script: generate_certs.sh
-  when: satellite == ansible_hostname
+#- name: execute script for generating certificates of the capsule
+#  script: generate_certs.sh
+#  when: satellite == ansible_hostname
 
 - name: bring certs to localhost
   fetch:
@@ -72,7 +76,8 @@
   when: capsule == ansible_hostname
 
 - name: run capsule installer cmd
-  command: "{{ capsule_cmd }}"
+#  command: " {{ capsule_cmd }} --foreman-proxy-trusted-hosts= {{ satellite_fqdn }}"
+  command: " {{ capsule_cmd }} "
   when: capsule == ansible_hostname
 
 #    - name: download satellite ca-consumer
