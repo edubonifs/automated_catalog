@@ -62,6 +62,54 @@ def write_host_tower(nodes,nodes_size,database,database_boolean):
     file.writelines( data )
 
 
+#Define host name in which the Satellite upgrade will be done
+def  write_host_up_sat(sat_host):
+  #Open and write the host in the inventory file
+  with open('inventory', 'r') as file:
+    data = file.readlines()
+    data[1] = "" + sat_host +"\n"
+  with open('inventory', 'w') as file:
+    file.writelines( data )
+  with open('upgrade-satellite.yml', 'r') as file:
+    data = file.readlines()
+    data[2] = "  hosts: " + sat_host +"\n"
+  with open('upgrade-satellite.yml', 'w') as file:
+    file.writelines( data )
+
+
+#Define host name in which the Capsule upgrade will be done
+def  write_host_up_cap(cap_host):
+  #Open and write the host in the inventory file
+  with open('inventory', 'r') as file:
+    data = file.readlines()
+    data[1] = "" + cap_host +"\n"
+  with open('inventory', 'w') as file:
+    file.writelines( data )
+  with open('upgrade-capsule.yml', 'r') as file:
+    data = file.readlines()
+    data[2] = "  hosts: " + cap_host +"\n"
+  with open('upgrade-capsule.yml', 'w') as file:
+    file.writelines( data )
+
+
+#Function for setting the version in which to upgrade the satellite
+def write_version_up_sat(sat_version):
+  with open('roles/upgrade-satellite/vars/main.yml', 'r') as file:
+    data = file.readlines()
+    data[1] = "version: "+ sat_version +"\n"
+  with open('roles/upgrade-satellite/vars/main.yml', 'w') as file:
+    file.writelines( data )
+
+
+#Function for setting the version in which to upgrade the capsule
+def write_version_up_cap(cap_version):
+  with open('roles/upgrade-capsule/vars/main.yml', 'r') as file:
+    data = file.readlines()
+    data[1] = "version: "+ cap_version +"\n"
+  with open('roles/upgrade-capsule/vars/main.yml', 'w') as file:
+    file.writelines( data )
+
+
 #Function for telling tower that the setup bundle has been downloaded
 def set_downloaded(downloaded):
   with open('roles/tower/vars/main.yml', 'r') as file:
@@ -278,9 +326,41 @@ if product == 1:
       os.system('ansible-playbook capsule_no_sub.yml')
 
   elif action == 3:
-    print("You chosed Satellite Upgrade")
+    print("You chosed Satellite Upgrade")￼
+
+    #Ask for the hostame of the satellite
+    sat_host = raw_input("Enter the hostname of the satellite"\n)
+    write_host_up_sat(sat_host)
+
+    #Ask the version to which you want to update
+    ask_sat_version = raw_input("To which version would you like to update?\n1-6.7\n")
+    if ask_sat_version == "1":
+      sat_version = "6.7"
+      write_version_up_sat(sat_version)
+    else:
+      print("This version is not allowed")
+
+    #Run the playbook
+    os.system('ansible-playbook upgrade-satellite.yml')
+
   else:
     print("You chosed Capsule Upgrade")
+
+    #Ask for the hostame of the capsule
+    cap_host = raw_input("Enter the hostname of the capsule"\n)
+    write_host_up_cap(cap_host)
+
+    #Ask the version to which you want to update
+    ask_cap_version = raw_input("To which version would you like to update?\n1-6.7\n")
+    if ask_cap_version == "1":
+      cap_version = "6.7"
+      write_version_up_cap(cap_version)
+    else:
+      print("This version is not allowed")
+
+    #Run the playbook
+    os.system('ansible-playbook upgrade-capsule.yml')
+
 elif product == 2:
   print("You chosed Tower")
   ask_sub= raw_input("Do you want to subscribe the nodes?\n1-Yes\n2-No\n")

@@ -1,0 +1,5 @@
+---
+- name: Upgrade Satellite
+  hosts: node-2
+  roles:
+    - upgrade-satellite
