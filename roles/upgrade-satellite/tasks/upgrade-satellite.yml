@@ -1,0 +1,16 @@
+---
+- name: clean metadata
+  command: yum clean all 
+
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+   
+- name: run upgrade command
+  command: satellite-maintain upgrade run --target-version {{ version }}
+
+- name: reboot
+  command: reboot
+  ignore_errors: yes

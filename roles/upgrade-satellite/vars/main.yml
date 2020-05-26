@@ -1,0 +1,7 @@
+---
+# vars file for update-satellite
+
+
+packages:
+  - satellite-maintain 
+  - rubygem-foreman_maintain
