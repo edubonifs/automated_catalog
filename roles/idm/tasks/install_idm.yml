@@ -4,7 +4,7 @@
     name: firewalld
     state: present
 
-- name: open firewall ports
+- name: add firewal services
   firewalld:
     service: "{{ item }}"
     permanent: yes
@@ -13,7 +13,7 @@
 
 - name: open firewall ports
   firewalld:
-    ports: "{{ item }}"
+    port: "{{ item }}"
     permanent: yes
     state: enabled
   loop: "{{ ports }}"
@@ -46,7 +46,7 @@
   when: not unattended
 
 - name: execute idm-installer command
-  command: ipa-server-install {{ reverse_flag }} {{ dns_flag }} {{ forward_flag }} -p {{ dm_passwd }} -a {{ ipa_passwd }} -r {{ realm }} --hostname {{ hostname }} --unattended
+  command: ipa-server-install {{ reverse_flag }} {{ dns_flag }} {{ forward_flag }} -p {{ dm_passwd }} -a {{ ipa_passwd }} -r {{ realm }} --unattended
   when: unattended
 
 

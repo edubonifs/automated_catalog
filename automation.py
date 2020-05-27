@@ -92,6 +92,25 @@ def  write_host_up_cap(cap_host):
     file.writelines( data )
 
 
+#Write the IDM host
+def write_host_idm(hostname):
+  #Open and write the host in the inventory file
+  with open('inventory', 'r') as file:
+    data = file.readlines()
+    data[1] = "" + hostname +"\n"
+  with open('inventory', 'w') as file:
+    file.writelines( data )
+  with open('idm.yml', 'r') as file:
+    data = file.readlines()
+    data[2] = "  hosts: " + hostname +"\n"
+  with open('idm.yml', 'w') as file:
+    file.writelines( data )
+  with open('idm_no_sub.yml', 'r') as file:
+    data = file.readlines()
+    data[2] = "  hosts: " + hostname +"\n"
+  with open('idm_no_sub.yml', 'w') as file:
+    file.writelines( data )
+
 #Function for setting the version in which to upgrade the satellite
 def write_version_up_sat(sat_version):
   with open('roles/upgrade-satellite/vars/main.yml', 'r') as file:
@@ -170,19 +189,18 @@ def set_vars_tower(sub):
     file.writelines( data )
 
 #Function for asking wether you want to subscribe your node
-def set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp,forward,unattended):
+def set_vars_idm(sub,dns,reverse,realm,dm_passwd,ipa_passwd,ntp,forward,unattended):
   with open('roles/idm/vars/main.yml', 'r') as file:
     data = file.readlines()
     data[1] = "sub: " + sub +"\n"
     data[2] = "dns: " + dns +"\n"
     data[3] = "reverse: " + reverse +"\n"
-    data[4] = "domain: " + domain +"\n"
-    data[5] = "realm: " + realm +"\n"
-    data[6] = "dm_passwd: " + dm_passwd +"\n"
-    data[7] = "ipa_passwd: " + ipa_passwd +"\n"
-    data[8] = "ntp: " + ntp +"\n"
-    data[9] = "forward: " + forward +"\n"
-    data[10] = "unattended: " + unattended +"\n"
+    data[4] = "realm: " + realm +"\n"
+    data[5] = "dm_passwd: " + dm_passwd +"\n"
+    data[6] = "ipa_passwd: " + ipa_passwd +"\n"
+    data[7] = "ntp: " + ntp +"\n"
+    data[8] = "forward: " + forward +"\n"
+    data[9] = "unattended: " + unattended +"\n"
   with open('roles/idm/vars/main.yml', 'w') as file:
     file.writelines( data )
 
@@ -430,22 +448,27 @@ else:
     sub = "false"
 
   #Ask wether you want integrated DNS in your IDM
-  dns = raw_input("Do you want to have integrated DNS in your IDM?\n1-Yes\n2-No\n") 
+  ask_dns = raw_input("Do you want to have integrated DNS in your IDM?\n1-Yes\n2-No\n") 
+  if ask_dns == "1":
+    dns = "true"
+  else:
+    dns = "false"
  
   #Ask wether you want auto reverse zone detection
-  reverse = raw_input("Do you want to have reverse zone auto detection)\n1-Yes\n2-No\n")
-
-  #Enter domain name
-  domain = raw_input("Please enter the domain name")
+  ask_reverse = raw_input("Do you want to have reverse zone auto detection)\n1-Yes\n2-No\n")
+  if ask_reverse == "1":
+    reverse = "true"
+  else:
+    reverse = "false"
 
   #Enter realm name
-  realm = raw_input("Please enter the realm name")
+  realm = raw_input("Please enter the realm name\n")
 
   #Please enter the Directory Manager password
-  dm_passwd = raw_input("Please enter the Directory Manager Password")
+  dm_passwd = raw_input("Please enter the Directory Manager Password\n")
   
   #Please enter the IPA admin password
-  ipa_passwd = raw_input("Please enter IPA admin password")
+  ipa_passwd = raw_input("Please enter IPA admin password\n")
 
   #Do you want to enable ntp configuration?
   ask_ntp = raw_input("Do you want to enable ntp?\n1-Yes\n2-No\n")
@@ -455,7 +478,7 @@ else:
     ntp = "false"
   
   #Do you want to enable auto forwarders?
-  ask_forward = raw_input("Do you want to enable auto forwarders??\n1-Yes\n2-No\n")
+  ask_forward = raw_input("Do you want to enable auto forwarders?\n1-Yes\n2-No\n")
   if ask_forward == "1":
     forward = "true"
   else:
@@ -468,10 +491,10 @@ else:
   else:
     unattended = "false"
   
-  set_vars_idm(sub,dns,reverse,domain,realm,dm_passwd,ipa_passwd,ntp,forward,unattended)
+  set_vars_idm(sub,dns,reverse,realm,dm_passwd,ipa_passwd,ntp,forward,unattended)
 
   if sub == "true":
-    os.system('ansible-playbook idm.yml')
+    os.system('ansible-playbook idm.yml --ask-vault-pass')
   else:
-    os.system('ansible-playbook idm_no_sub.yml --ask-vault-pass')
+    os.system('ansible-playbook idm_no_sub.yml')
 

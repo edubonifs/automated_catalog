@@ -1,14 +1,13 @@
 ---
-sub:
-dns:
-reverse:
-domain:
-realm:
-dm_passwd:
-ipa_passwd:
-ntp:
-forward:
-unattended:
+sub: false
+dns: true
+reverse: true
+realm: EDUTEST.LAB.RDU2.CEE.REDHAT.COM
+dm_passwd: redhat00
+ipa_passwd: redhat00
+ntp: true
+forward: true
+unattended: true
 
 services:
  - freeipa-ldap
