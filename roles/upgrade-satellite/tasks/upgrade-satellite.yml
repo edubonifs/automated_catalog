@@ -1,6 +1,8 @@
 ---
 - name: clean metadata
   command: yum clean all 
+  args:
+    warn: false
 
 - name: install packages
   package:
@@ -9,7 +11,7 @@
   loop: "{{ packages }}"
    
 - name: run upgrade command
-  command: satellite-maintain upgrade run --target-version {{ version }}
+  command: satellite-maintain upgrade run --target-version {{ version }} -y
 
 - name: reboot
   command: reboot

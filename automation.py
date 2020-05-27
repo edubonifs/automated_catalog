@@ -326,10 +326,10 @@ if product == 1:
       os.system('ansible-playbook capsule_no_sub.yml')
 
   elif action == 3:
-    print("You chosed Satellite Upgrade")￼
+    print("You chosed Satellite Upgrade")
 
     #Ask for the hostame of the satellite
-    sat_host = raw_input("Enter the hostname of the satellite"\n)
+    sat_host = raw_input("Enter the hostname of the satellite\n")
     write_host_up_sat(sat_host)
 
     #Ask the version to which you want to update
@@ -347,7 +347,7 @@ if product == 1:
     print("You chosed Capsule Upgrade")
 
     #Ask for the hostame of the capsule
-    cap_host = raw_input("Enter the hostname of the capsule"\n)
+    cap_host = raw_input("Enter the hostname of the capsule\n")
     write_host_up_cap(cap_host)
 
     #Ask the version to which you want to update

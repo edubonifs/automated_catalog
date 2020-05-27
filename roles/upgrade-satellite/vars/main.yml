@@ -1,5 +1,5 @@
 ---
-# vars file for update-satellite
+version: 6.7
 
 
 packages:
