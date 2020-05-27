@@ -102,10 +102,10 @@ def write_version_up_sat(sat_version):
 
 
 #Function for setting the version in which to upgrade the capsule
-def write_version_up_cap(cap_version):
+def set_vars_up_cap(proxy):
   with open('roles/upgrade-capsule/vars/main.yml', 'r') as file:
     data = file.readlines()
-    data[1] = "version: "+ cap_version +"\n"
+    data[2] = "proxy: "+ proxy +"\n"
   with open('roles/upgrade-capsule/vars/main.yml', 'w') as file:
     file.writelines( data )
 
@@ -350,13 +350,13 @@ if product == 1:
     cap_host = raw_input("Enter the hostname of the capsule\n")
     write_host_up_cap(cap_host)
 
-    #Ask the version to which you want to update
-    ask_cap_version = raw_input("To which version would you like to update?\n1-6.7\n")
-    if ask_cap_version == "1":
-      cap_version = "6.7"
-      write_version_up_cap(cap_version)
+    #Ask if using the capsule as a proxy for discovered hosts
+    ask_proxy = raw_input("Do you plan to use the Capsule as a proxy for discovered hosts\n1-Yes\n2-No\n")
+    if ask_proxy == "1":
+      proxy = "true"
     else:
-      print("This version is not allowed")
+      proxy = "false"
+    set_vars_up_cap(proxy)
 
     #Run the playbook
     os.system('ansible-playbook upgrade-capsule.yml')

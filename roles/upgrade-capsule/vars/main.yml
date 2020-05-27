@@ -1,2 +1,12 @@
 ---
 # vars file for update-capsule
+proxy: false
+
+repos67:
+  - rhel-7-server-rpms
+  - rhel-7-server-satellite-capsule-6.6-rpms
+  - rhel-7-server-satellite-maintenance-6-rpms
+  - rhel-7-server-satellite-tools-6.7-rpms
+  - rhel-server-rhscl-7-rpms
+  - rhel-7-server-ansible-2.8-rpms
+

@@ -1,15 +1,35 @@
 ---
+- name: Disable all RHSM repositories
+  rhsm_repository:
+    name: '*'
+    state: disabled
+
+- name: Enable necessary repos satellite
+  rhsm_repository:
+    name: "{{ item }}"
+  loop: "{{ repos67 }}"
+
 - name: clean metadata
   command: yum clean all 
+  args:
+    warn: no
+
+- name: clean metadata
+  command: satellite-maintain service stop
+
+- name: update
+  yum:
+    name: '*'
+    state: latest
 
 - name: install packages
   package:
-    name: "{{ item }}"
+    name: rubygem-smart_proxy_discovery.noarch
     state: present
-  loop: "{{ packages }}"
+  when: proxy
    
 - name: run upgrade command
-  command: satellite-maintain upgrade run --target-version {{ version }}
+  command: satellite-installer --scenario capsule --upgrade
 
 - name: reboot
   command: reboot
