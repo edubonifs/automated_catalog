@@ -40,6 +40,23 @@ def write_host_capsule(hostame,satellite,sub):
   with open('inventory', 'w') as file:
     file.writelines( data )
 
+#Function to write the host of OCP
+def write_host_ocp(nodes,ask_nodes):
+  #Open and write the host to ocp3.yml playbook
+  with open('ocp3.yml', 'r') as file:
+    data = file.readlines()
+    data[2] = "  hosts: all\n"
+  with open('tower.yml', 'w') as file:
+    file.writelines( data )
+  #Open and write the host in the inventory file
+  with open('inventory', 'r') as file:
+    data = file.readlines()
+    i = 0
+    while i < nodes_size:
+      data[i] = nodes[i] +"\n"
+      i += 1
+  with open('inventory', 'w') as file:
+    file.writelines( data )
 
 #Function to write the hostname in different files for Tower installation
 def write_host_tower(nodes,nodes_size,database,database_boolean):
@@ -433,6 +450,26 @@ elif product == 2:
   os.system('sudo ./roles/tower/files/tower-setup/setup.sh')
 elif product == 3:
   print("You chosed OCP")
+ 
+  ask_nodes= input("How many tower nodes do you want in your cluster?\nEnter a number\n")
+  print "Enter the hostname of the node\n"
+
+  nodes = {}
+  i = 1
+  while i <= ask_nodes:
+    print "Enter the hostname of node number ", i
+    print "Please write all of them in the same format"
+    node_fqdn = raw_input()
+    nodes[i-1] = node_fqdn
+    i += 1
+  write_host_ocp(nodes,ask_nodes)
+
+  print ("Running prerequisites for OCP 3.11 to be installed")
+
+  os.system('ansible-playbook ocp3.yml --ask-vault-pass')
+
+  print ("All the nodes are ready, please run your inventory file with ansible-playbook [-i /path/to/inventory] playbooks/deploy_cluster.yml")
+
 else:
   print("You chosed IDM")
   
