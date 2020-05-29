@@ -1,0 +1,115 @@
+---
+- import_playbook: subscription.yml
+- name: prerequisites all nodes
+  hosts: all
+  vars:
+    packages:
+      - ntp
+      - docker
+      - wget
+      - git
+      - net-tools
+      - bind-utils
+      - yum-utils
+      - iptables-services
+      - bridge-utils
+      - bash-completion
+      - kexec-tools
+      - sos
+      - psacct
+      - openshift-ansible
+    repositories:
+      - rhel-7-server-rpms
+      - rhel-7-server-extras-rpms
+      - rhel-7-server-ose-3.11-rpms
+      - rhel-7-server-ansible-2.8-rpms
+      - rh-gluster-3-client-for-rhel-7-server-rpms
+  tasks:
+
+    - name: All VMs created
+      ping:
+
+    - name: selinux to enforcing
+      lineinfile:
+        regexp: "^SELINUX="
+        state: present
+        path: /etc/selinux/config
+        line: SELINUX=enforcing
+
+    - name: enabling packages
+      rhsm_repository:
+        name: "{{ item }}"
+        state: enabled
+      loop: "{{ repositories }}"
+
+    - name: package present
+      package:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+
+    - name: enable and start ntpd
+      service:
+        name: ntpd
+        state: started
+        enabled: yes
+
+    - name: Remove swapfile from /etc/fstab
+      mount:
+        fstype: swap
+        state: absent
+        name: none
+
+    - name: Disable swap
+      command: swapoff -a
+      when: ansible_swaptotal_mb > 0
+
+    - name: empty file
+      copy:
+        content: ""
+        dest: /etc/sysconfig/docker-storage-setup
+
+    - name: configuring docker storage
+      blockinfile: 
+        block: |
+          DEVS=/dev/vdb
+          VG=docker_vg
+          DATA_SIZE=99%VG
+          STORAGE_DRIVER="overlay2"
+          CONTAINER_ROOT_LV_NAME="docker-root-lv"
+          CONTAINER_ROOT_LV_SIZE="100%FREE"
+          CONTAINER_ROOT_LV_MOUNT_PATH="/var/lib/docker"
+          EXTRA_STORAGE_OPTIONS="--storage-opt overlay2.override_kernel_check=true --storage-opt overlay2.size=40G --graph=/var/lib/docker"        
+        path: /etc/sysconfig/docker-storage-setup
+
+    - name: docker-storage-setup
+      shell: docker-storage-setup
+
+    - name: enable and start docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+- name: prerequisites gluster
+  hosts: glusters
+  gather_facts: false
+  tasks:
+    - name: install glusterfs-fuse
+      package:
+        name: glusterfs-fuse
+        state: present
+
+- name: openshift-ansible on localhost
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: enabling packages
+      rhsm_repository:
+        name: "{{ item }}"
+        state: enabled
+      loop: "{{ repositories }}"
+    - name: install openshift-ansible on localhost
+      package:
+        name: openshift-ansible
+        state: present
