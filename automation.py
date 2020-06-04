@@ -447,7 +447,7 @@ elif product == 2:
   install = "true"
   set_install(install)
   os.system('ansible-playbook tower.yml')
-  os.system('sudo ./roles/tower/files/tower-setup/setup.sh')
+  os.system('./roles/tower/files/tower-setup/setup.sh')
 elif product == 3:
   print("You chosed OCP")
  

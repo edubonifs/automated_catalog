@@ -1,6 +1,6 @@
 ---
 - name: Satellite installer
-  hosts: node-2
+  hosts: node-5
   vars_files:
     - roles/satellite/vars/sec.yml
   roles:
