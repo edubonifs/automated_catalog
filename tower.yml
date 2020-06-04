@@ -1,6 +1,7 @@
 ---
-- name: Tower Installer
+- name: OCP 3 installer
   hosts: all
-  gather_facts: no
+  vars_files:
+    - roles/ocp3/vars/sec.yml
   roles:
-    - tower
+    - ocp3

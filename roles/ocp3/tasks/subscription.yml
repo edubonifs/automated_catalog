@@ -1,12 +1,8 @@
 ---
-- name: subscriptions
-  hosts: nodes
-  vars_files:
-    - sec.yml
-  tasks:
-    - name: subscriptions rhel
-      redhat_subscription:
-        state: present
-        username: eduboni
-        password: "{{ pass }}"
-        auto_attach: true       
+- name: subscriptions rhel
+  redhat_subscription:
+    state: present
+    username: eduboni
+    password: "{{ pass }}"
+    auto_attach: true       
+    force_register: yes

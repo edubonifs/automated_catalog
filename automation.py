@@ -46,13 +46,13 @@ def write_host_ocp(nodes,ask_nodes):
   with open('ocp3.yml', 'r') as file:
     data = file.readlines()
     data[2] = "  hosts: all\n"
-  with open('tower.yml', 'w') as file:
+  with open('ocp3.yml', 'w') as file:
     file.writelines( data )
   #Open and write the host in the inventory file
   with open('inventory', 'r') as file:
     data = file.readlines()
     i = 0
-    while i < nodes_size:
+    while i < ask_nodes:
       data[i] = nodes[i] +"\n"
       i += 1
   with open('inventory', 'w') as file:

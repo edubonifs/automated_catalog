@@ -1,6 +1,6 @@
 ---
 - name: OCP 3 installer
-  hosts: node-2
+  hosts: all
   vars_files:
     - roles/ocp3/vars/sec.yml
   roles:

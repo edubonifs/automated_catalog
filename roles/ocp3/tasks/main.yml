@@ -1,5 +1,4 @@
 ---
 # tasks file for satellite
 - import_tasks: subscription.yml
-  when: sub
-- import_tasks: install_ocp.yml
+- import_tasks: install_ocp3.yml
