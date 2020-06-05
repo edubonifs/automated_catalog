@@ -1,88 +1,34 @@
-# Project Title
+# AUTOMATED CATALOG
 
-One Paragraph of project description goes here
+This project is created due to the necessity of saving some time for the consultants at the time of being in a delivery. It is though to provide consultants a testing environment as soon as possible so that some tests can be made withouth risking by doing them in a productive environment.
+
+Currently, the program is able to automatically install Satellite, Tower, IDM and OCP 3.11 prerequisites.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This project was developed initially in quicklab, although it has been made to be used in any platform.
+
+For starting you may clone the project: git clone https://github.com/edubonifs/automated_catalog.git
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Before starting, you may have your node subscribed with a valid redhat subscription, and have python and ansible 2.8 installed.
 
-```
-Give examples
-```
+subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
 
-### Installing
+yum install ansible
 
-A step by step series of examples that tell you how to get a development env running
+## Running the program
 
-Say what the step will be
+For running the program you just have to run the automated.py file:
 
-```
-Give the example
-```
+python automated.py
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+You will be prompted with some questions, in which you will just have to enter numbers (1,2,3...) or strings, normally for hostnames, users or passwords.
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+Eduardo Bonilla Rodríguez
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+Junior Consultant Red Hat
 
